@@ -1,0 +1,104 @@
+.dropbtn {
+    background-color: transparent !important;
+    color: grey !important;
+    padding: 16px !important;
+    font-size: 16px !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 18rem !important;
+    justify-content: space-between !important;
+    font-size: 1.3rem !important;
+    margin: 0 !important;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 0.85rem 0 0.75rem 1.25rem;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 18rem;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {
+    background-color: transparent;
+  }
+
+  .input{
+    background-color: #FFFFFF;  
+ backdrop-filter: blur(20px);
+ border: none;
+ color: #000000;
+ padding: 0 0 0 0;
+ font-size: 1.2rem;
+}
+.input:focus {
+    border: none;
+}
+.input::placeholder{
+    text-align: left;
+    color: grey;
+}
+
+.react-switch-selector-wrapper{
+  height: 5rem !important;
+  margin: 2rem 0 0 0;
+  border-radius: 0 !important;
+}
+
+@media only screen and (max-width: 1100px) {
+    
+  .dropdown {
+   
+    margin: 0 ;
+  }
+  .dropbtn {
+
+    margin: 0 0 0 1rem;
+    
+
+  }
+ 
+  
+}
+
+@media only screen and (max-width: 768px) {
+    
+
+  .dropbtn {
+
+    width: 13rem;
+    
+
+  }
+ 
+  
+}

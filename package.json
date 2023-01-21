@@ -1,0 +1,90 @@
+{
+  "name": "frosty",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.7.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.3",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "dark-mode-toggle": "^0.9.0",
+    "firebase": "^9.10.0",
+    "framer-motion": "^4.1.17",
+    "graphql": "^16.6.0",
+    "moment": "^2.29.4",
+    "rc-progress": "^3.2.4",
+    "react": "^17.0.2",
+    "react-alice-carousel": "^2.5.1",
+    "react-dark-mode-toggle": "^0.2.0",
+    "react-dom": "^17.0.2",
+    "react-focus-lock": "^2.5.2",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.3.1",
+    "react-parallax-tilt": "^1.5.71",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.6.1",
+    "react-scripts": "4.0.3",
+    "react-scroll": "^1.8.4",
+    "react-switch-selector": "^2.2.1",
+    "react-use-dark-mode": "^2.0.3",
+    "react-vertical-timeline-component": "^3.5.2",
+    "react-webcam": "^7.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "styled-components": "^5.3.6",
+    "styled-theming": "^2.2.0",
+    "use-dark-mode": "^2.3.1",
+    "use-wallet": "^0.13.6",
+    "web-vitals": "^1.0.1",
+    "web3": "^1.7.3"
+  },
+  "scripts": {
+    "prepublish": "babel src -d lib",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-syntax-class-properties",
+      "@babel/plugin-proposal-private-methods"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6"
+  }
+}

@@ -178,7 +178,7 @@ const Registration = () => {
             <Container>{getFragment()}</Container>
           </Gradient>
           <Link fontSize={"20px"} href="/login">
-            Already Have An Account? Login
+            Already have an account? Login
           </Link>
         </Box>
       </Width>

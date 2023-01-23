@@ -203,7 +203,6 @@ const changeBackground = () => {
         
             <PC>
               <ul className={wallet.account ? "listWallet" : "list"}>
-                  <Link2 to="/allfundraiser" spy={true} smooth={true} offset={-80}>Fundraiser</Link2>
               <Link3
                 
                 href="http://donoooor-valuts.s3-website-us-west-2.amazonaws.com/#/bsctest" spy={true}

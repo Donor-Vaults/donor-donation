@@ -160,7 +160,7 @@ const FundraiserCard = (props) => {
           <div>
             <Button style={{ borderRadius: "1.5rem", minWidth: "9rem" }}>
               <Link
-                to="/payment"
+                to={`/fundraiser?id=${id}`}
                 style={{ color: "#FFF", textDecoration: "none" }}
               >
                 Donate

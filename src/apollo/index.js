@@ -78,10 +78,13 @@ mutation CreateCampaign($benificiary:String!,$category:String!,
   }
 }`);
 
-export const GetAllFundraisers = gql(`query FundRaisers{
-  fundraisers(where:{}){
- 
-   benificiary:
+// # fundraisers(where:{fundraisers_status:{equals:APPROVED}}){
+
+  export const GetAllFundraisers = gql(`
+query FundRaisers{
+  fundraisers(where:{fundraisers_status:{equals:APPROVED}}){
+
+benificiary
  category
  contract_address
  createdAt
@@ -104,6 +107,9 @@ export const GetAllFundraisers = gql(`query FundRaisers{
    
  }
  }`);
+
+
+
 export const GetUser = gql(`
 query me{
  me{

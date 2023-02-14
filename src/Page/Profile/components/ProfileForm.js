@@ -2,6 +2,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Button } from "../../../components/Navbar/Navbar";
 
 const Container = styled.div`
   margin: 4rem 2rem 2rem 2rem;
@@ -211,8 +212,23 @@ const ProfileForm = () => {
         </Second>
 
 
+
+       
         
       </Flex>
+
+      <Button
+        onClick={async() => {
+          await localStorage.clear()
+          window.location.href = "/"
+        }}
+        style={{
+        background: "Red",
+        width:"50%"
+        
+      }}>
+          Logout
+        </Button>
 
 
   

@@ -27,7 +27,6 @@ const CreateCampaign = () => {
     setLoading(true);
     try {
       const featuredImage = await uploadFile(payload.featuredImage);
-      // const supportingDocuments = await uploadFile(payload.supportingDocument);
 
       const info = {
         ...payload,
@@ -47,6 +46,10 @@ const CreateCampaign = () => {
       setIndex(index + 1);
       toast.success("Campaign has been submitted for review");
       console.log("createeee", resp);
+      setIndex(index + 1);
+
+      setData(info)
+
     } catch (err) {
       console.log("wsdsdsdd", err);
       console.error("handleSubmitForm", err);
@@ -119,9 +122,10 @@ const CreateCampaign = () => {
 
       <FourmPage6
         hide={index != 6}
+        data={data}
         onNext={(_data) => {
           setData({ ...data, ..._data });
-          setIndex(index + 1);
+          
           handleSubmitForm({ ...data, ..._data });
 
           console.log("ASaq s",_data)

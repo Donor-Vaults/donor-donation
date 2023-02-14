@@ -255,7 +255,7 @@ const Page4 = (props) => {
             }}
           >
             <H style={{ color: "#FFFFFF", textAlign: "center", margin: "0" }}>
-              5,234
+              122
             </H>
             <Hs
               style={{

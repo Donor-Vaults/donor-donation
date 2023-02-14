@@ -11,6 +11,7 @@ import { useWallet } from "use-wallet";
 import Web3 from "web3";
 import FactoryABI from "../../config/abi/DonationFactory.json";
 import config from "../../config";
+import FundraiserPreview from "./components/FundRaisersPreview";
 
 const Sec = styled.section`
   min-height: 100vh;
@@ -125,7 +126,7 @@ const Details = styled.div`
   }
 `;
 
-const FourmPage6 = ({ onNext, hide, onBack }) => {
+const FundPreview = ({ data,onNext, hide, onBack }) => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const wallet = useWallet();
@@ -140,7 +141,7 @@ const FourmPage6 = ({ onNext, hide, onBack }) => {
 
   const handleClickNext = () => {
     const isValid = validate();
-
+    console.log("gddddd",contractAddress)
     if (isValid) {
       onNext({ contract_address: contractAddress });
     }
@@ -163,7 +164,7 @@ const FourmPage6 = ({ onNext, hide, onBack }) => {
         .createCampaign()
         .send({ from: wallet.account });
       console.log("deployContract", resp);
-      const _address = resp.events.onCreateCampaign.address;
+      const _address = resp.events.onCreateCampaign.returnValues.campaginAddress;
 
       setContractAddress(_address);
     } catch (err) {
@@ -207,7 +208,14 @@ const FourmPage6 = ({ onNext, hide, onBack }) => {
   };
   return (
     <Sec style={{ display: hide ? "none" : "" }}>
-      <Width>
+
+
+      <FundraiserPreview fundraiser={data} isLoading={isLoading}
+        onConfirm={() => { deployContract() }}
+        onNext={() => { handleClickNext() }}
+        isDeployed={contractAddress}
+      />
+      {/* <Width>
         <Right>
           <Details>
             <H>This is the Last Step</H>
@@ -217,9 +225,9 @@ const FourmPage6 = ({ onNext, hide, onBack }) => {
             </div>
           </Details>
         </Right>
-      </Width>
+      </Width> */}
     </Sec>
   );
 };
 
-export default FourmPage6;
+export default FundPreview;

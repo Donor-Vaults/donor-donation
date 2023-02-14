@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import Register3 from '../Registration3/Registration3';
 import { useDispatch } from "react-redux";
 import logo from "../../../components/Navbar/logo.svg";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const T = styled.p`
   color: #000;
@@ -153,6 +153,10 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   //     navigate(path);
   // }
 
+  const isValid = (regex, value) => {
+    return regex.test(value);
+  };
+
   const [info, setInfo] = useState({
     name: "",
     dob: "",
@@ -165,48 +169,52 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   const dispatch = useDispatch();
 
   const validate = () => {
-
     if (!info.name) {
-      console.log("dsdsdsdsd111")
-      toast.error("Enter Name")
-      return false
-    } 
+      console.log("dsdsdsdsd111");
+      toast.error("Enter Name");
+      return false;
+    }
 
     if (!info.dob) {
-      toast.error("Enter DOB")
-      return false
-    } 
+      toast.error("Enter DOB");
+      return false;
+    }
 
     if (!info.country) {
-      toast.error("Enter Country")
-      return false
-    } 
+      toast.error("Enter Country");
+      return false;
+    }
 
-    if (!info.mobile) {
-      toast.error("Enter Mobile")
-      return false
-    } 
+    if (!isValid(/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/, info.mobile)) {
+      toast.error("Enter Valid Mobile");
+      return false;
+    }
 
+    var emailRegex =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (!info.email) {
-      toast.error("Enter Email")
-      return false
-    } 
+    if (!isValid(emailRegex, info.email)) {
+      toast.error("Enter Valid Email");
+      return false;
+    }
 
-    if (!info.password) {
-      toast.error("Enter Password")
-      return false
-    } 
+    if (
+      !isValid(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,
+        info.password
+      )
+    ) {
+      toast.error("Enter Valid Password");
+      return false;
+    }
 
-    return true
-  }
+    return true;
+  };
   const handleOnNext = () => {
     console.log("ddsdsds");
-    const isValid = validate()
+    const isValid = validate();
     if (isValid) {
-      onNext()
+      onNext();
     }
-   
   };
 
   useEffect(() => {
@@ -214,8 +222,6 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
       onInfoChanged(info);
     }
   }, [info]);
-
-  
 
   return (
     <div
@@ -254,7 +260,6 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
                   Your Name
                 </H>
-               
               </div>
 
               <Input
@@ -310,7 +315,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 className="input"
                 value={info.dob}
                 onChange={(r) => {
-                  console.log(r)
+                  console.log(r);
                   setInfo({ ...info, dob: r.target.value });
                 }}
                 style={{
@@ -534,7 +539,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
           </Details>
         </Right>
       </Box>
-{/* 
+      {/* 
       <Toaster
   position="top-center"
   reverseOrder={false}

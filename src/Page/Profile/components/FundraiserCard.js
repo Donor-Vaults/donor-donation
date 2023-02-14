@@ -82,9 +82,8 @@ const Mid = styled.div`
 
 const Card = ({ data }) => {
   const getFundraiserStatus = () => {
-    if (data.fundraisers_status === "PENDING") {
-      return "Pending Approval";
-    }
+    console.log("ASasasa",data.fundraisers_status)
+   return data.fundraisers_status
   };
   return (
     <>

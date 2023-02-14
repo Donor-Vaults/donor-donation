@@ -9,6 +9,7 @@ import wp from "./wp.svg";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { SocialShare } from "../SocialShare";
 
 export const backgroundColor = theme("theme", {
   light: "#000000",
@@ -109,7 +110,7 @@ const FundraiserCard = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <Box>
+    <Box >
       <Link to={`/fundraiser?id=${id}`} style={{ textDecoration: "none" }}>
         <Ts
           style={{
@@ -156,7 +157,7 @@ const FundraiserCard = (props) => {
             Created At : {moment(createdAt).format("DD MMM YYYY hh:mm a")}
           </T>
 
-          <ButtonContainer>
+          <div>
             <Button style={{ borderRadius: "1.5rem", minWidth: "9rem" }}>
               <Link
                 to="/payment"
@@ -165,19 +166,8 @@ const FundraiserCard = (props) => {
                 Donate
               </Link>
             </Button>
-            <ButtonR style={{ borderRadius: "1.5rem", minWidth: "9rem" }}>
-              <img
-                src={wp}
-                alt=""
-                style={{
-                  height: "1.25rem",
-                  width: "1.25rem",
-                  margin: "0 0.2rem 0 0",
-                }}
-              />
-              Share
-            </ButtonR>
-          </ButtonContainer>
+            <SocialShare link={ ""} />
+          </div>
         </Lower>
       </Link>
     </Box>

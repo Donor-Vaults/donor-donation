@@ -21,7 +21,7 @@ const RegisterationHome = () => {
   let PathName = "F1"
 
   
- // console.log(PathName)
+ 
 
   return (
   

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Line } from "rc-progress";
 import FundraiserCard from "./FundraiserCard";
 import { useSelector } from "react-redux";
+import { Grid } from "@mui/material";
 
 const StyledRaiser = styled.div`
   width: 90%;
@@ -36,8 +37,10 @@ const FundRaisers = () => {
     <StyledRaiser>
     
       <CardContainer>
-        {fundraisers.map((item, index) => {
-          return <FundraiserCard data={item} key={index} />;
+       
+
+      {fundraisers.map((item, index) => {
+          return <FundraiserCard data={item} key={index} />
         })}
       </CardContainer>
     </StyledRaiser>

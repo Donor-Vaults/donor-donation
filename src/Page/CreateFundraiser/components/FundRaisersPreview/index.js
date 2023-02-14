@@ -1,13 +1,12 @@
 import React,{useEffect, useState} from 'react'
 import styled from 'styled-components'
-import './Style.css'
+// import './Style.css'
 import theme from "styled-theming";
-import BigCard from './components/BigCard'
-import DonationPanel from './components/DonationPanel';
+import BigCard from '../../../FundraiserInfo/components/BigCard'
+// import DonationPanel from './components/DonationPanel';
 import { useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
-import DonationModal from "../../components/DonationModal";
-
+import { useWallet } from 'use-wallet';
 
 export const backgroundColor = theme("theme", {
     light: "#000000",
@@ -133,14 +132,6 @@ const Width = styled.div`
         flex-direction: column;
     }
 `
-const Margin = styled.div`
-@media only screen and (max-width: 1100px) {
-  margin: 0 0 1rem 0;
-}
-@media only screen and (max-width: 768px) {
-  margin: 1rem 0;
-}
-` 
 const Heading = styled.div`
     color: rgba(2, 169, 92, 1);
     font-size: 2.5rem;
@@ -167,75 +158,90 @@ const Line = styled.div`
 `
 
 
-function getQueryVariable(variable)
-{
-        var query = window.location.search.substring(1);
-        console.log(query)//"app=article&act=news_content&aid=160990"
-        var vars = query.split("&");
-        console.log(vars) //[ 'app=article', 'act=news_content', 'aid=160990' ]
-        for (var i=0;i<vars.length;i++) {
-                    var pair = vars[i].split("=");
-                    console.log(pair)//[ 'app', 'article' ][ 'act', 'news_content' ][ 'aid', '160990' ] 
-        if(pair[0] == variable){return pair[1];}
-         }
-         return(false);
+const Box = styled.div`
+  width: 30rem;
+  background-color: #2d7b43;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem auto 0 auto;
+  justify-self: center;
+  padding: 3rem 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 2rem;
+
+  @media only screen and (max-width: 500px) {
+    width: 98%;
+  }
+`;
+
+
+const ApprovalPanel = ({ onConfirm, isLoading,onNext ,isDeployed}) => {
+    const wallet = useWallet()
+
+    const renderButton = () => {
+        let onClick = "";
+        let text = "";
+    
+        if (wallet.account) {
+          if (isDeployed) {
+            text = "Continue";
+            onClick = onNext;
+          } else {
+            text = "Approve Fundraiser";
+            onClick = onConfirm;
+          }
+        } else {
+          text = "Connect Wallet";
+          onClick = wallet.connect;
+        }
+        return (
+          <Button
+            onClick={() => {
+              onClick();
+            }}
+            style={{
+              borderRadius: "2rem",
+              //   width: "12rem",
+              margin: "0 0 2rem 0",
+              border: "2px solid #FFFFFF",
+              fontSize: "2rem",
+            }}
+          >
+            {isLoading ? "Please Wait" : text}
+          </Button>
+        );
+    };
+    
+
+    return <Box>
+        {renderButton()}
+    </Box>
 }
-const FundraiserInfo = () => {
+
+
+const FundraiserPreview = ({fundraiser,isLoading,onConfirm,onNext,isDeployed}) => {
   
-  const fundraisers = useSelector(state=>state.fundraisers.data)
-  const [isLoading, setLoading] = useState(true);
-  const [fundraiser,setFundraiser] = useState()
-  const fundraisersLoading = useSelector((state) => state.fundraisers.loading);
 
    
 
 
-
-  const checkLocally =async(id) => {
-    const item = fundraisers.find(fundraiser => fundraiser.id.toLowerCase() == id.toLowerCase());
-    return item
-  }
-  const handleRoute = async() => {
-    const id = getQueryVariable("id")
-    if (!id) {
-      window.location.href = "/";
-      return
-    }
-
-    let _fundraiser = await checkLocally(id);
-    setFundraiser(_fundraiser)
-    setLoading(false)
-    console.log("handleRoute", _fundraiser)
-    
-    if (!_fundraiser) {
-      window.location.href = "/";
-      return
-    }
-    
-  }
-
-  useEffect(() => {
-    if (!fundraisersLoading) {
-      handleRoute();
-    }
-  }, [fundraisers, fundraisersLoading]);
-
-  useEffect(() => {
-    console.log("handleRoute",{fundraiser}) 
-  },[fundraiser])
   
-  const Spinner = () => {
-    return <CircularProgress />
-  }
+  
 
 
-  if (isLoading || !fundraiser) {
-    return <Spinner/>
-  }
+  
     return (
         <Sec id="">
           <Width>
-            <div style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    
+                <Heading style={{color:"black"}}>
+              Preview
+              </Heading>
             <Heading>
               {fundraiser.fundraiserName}
               </Heading>
@@ -243,14 +249,14 @@ const FundraiserInfo = () => {
             </div>
           
             <Flex>
-              <BigCard fundraiser={fundraiser}/>
-              <DonationPanel  fundraiser={fundraiser}  />
-              
+            <BigCard fundraiser={fundraiser} isForPreview={true} />
+                    <ApprovalPanel onConfirm={onConfirm} isLoading={isLoading} onNext={onNext} isDeployed={isDeployed} />
+
             </Flex>
             
-        </Width>
+          </Width>
         </Sec>
     )
 }
 
-export default FundraiserInfo
+export default FundraiserPreview

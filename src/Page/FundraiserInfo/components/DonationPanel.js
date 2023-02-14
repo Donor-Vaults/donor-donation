@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import theme from "styled-theming";
+import { Grid, Avatar, CardContent, Card, Box, Stack, Typography, CircularProgress, TableRow } from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Tilt from "react-parallax-tilt";
 import { H, T } from "../../Home/Page2/Page2";
 import { Line, Circle } from "rc-progress";
 import { Button } from "../../../components/Navbar/Navbar";
 import SwitchSelector from "react-switch-selector";
+import { getFundraiserDetails } from "../../../apollo/subgraph"
 import { Link } from "react-router-dom";
 import moment from "moment";
 import Badge from "@mui/material/Badge";
+import DonationModal from "../../../components/DonationModal";
+import Web3 from "web3";
+import config from "../../../config";
+import CampaignAbi from "../../../config/abi/CampaingABI.json";
+import { SocialShare } from "../../../components/SocialShare";
 
 export const backgroundColor = theme("theme", {
   light: "#000000",
   dark: "#E5E5E5",
 });
 
+
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 export const bColor = theme("theme", {
   light: "linear-gradient(to right, #36d1dc, #5b86e5)",
   dark: "linear-gradient(to right, #0f2027, #203a43, #2c5364)",
@@ -99,7 +116,7 @@ const options = [
   },
 ];
 
-const Box = styled.div`
+const Box1 = styled.div`
   width: 30rem;
   background-color: #2d7b43;
   display: flex;
@@ -172,14 +189,138 @@ const ButtonR = styled(Button)`
   }
 `;
 
-const DonationPanel = ({ fundraiser }) => {
-  return (
-    <Box>
-      <Button style={{ width: "12rem", background: "#FFF", color: "#2D7B43" }}>
-       {fundraiser.fundraisers_status === "APPROVED"?"Donate":"Donation not Enabled"}
-      </Button>
+const OneDisbursementItem = ({ data }) => {
+  console.log("Saasa", data)
+  const { createdAt, amount, id } = data
+  return <Card sx={{}}>
+    <CardContent>
+      <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+        Date: {moment(createdAt * 1000).format("DD-MMM-YYYY hh:mm:a")}
+      </Typography>
 
-      <Button
+
+      <Typography variant="body2">
+        Amount: {Web3.utils.fromWei(amount)} {config.DONTATION_TOKEN_SYMBOL}
+      </Typography>
+
+      <Typography variant="body2" >
+        <a href={`https://testnet.bscscan.com/tx/${id}`} target="_blank">Txn Hash: {id}</a>
+      </Typography>
+    </CardContent>
+
+  </Card>
+}
+
+
+const OneDonationItem = ({ data }) => {
+  console.log("Saasa", data)
+  const {     id,
+    createdAt,
+    amount,
+    donor } = data
+
+  return <Card sx={{}}>
+    <CardContent>
+      <Typography sx={{ fontSize: 14 }} variant="body2" gutterBottom>
+        Date: {moment(createdAt * 1000).format("DD-MMM-YYYY hh:mm:a")}
+      </Typography>
+
+
+      <Typography variant="body2">
+        Amount: {Web3.utils.fromWei(amount)} {config.DONTATION_TOKEN_SYMBOL}
+      </Typography>
+
+      <Typography variant="body2" >
+        <a href={`https://testnet.bscscan.com/tx/${id}`} target="_blank">Txn Hash: {id}</a>
+      </Typography>
+
+
+      <Typography variant="body2" >
+        <a href={`https://testnet.bscscan.com/address/${donor}`} target="_blank">Donor: {donor}</a>
+      </Typography>
+    </CardContent>
+
+  </Card>
+}
+const DonationPanel = ({ fundraiser }) => {
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [subgraphDetail, setSubgraphDetail] = useState()
+
+  const [isDataLoading, setDataLoading] = useState(false);
+  const [contractData, setContractData] = useState({ totalRaised: 0 });
+  const [selectedTab, setSelectedTab] = React.useState(0);
+
+
+
+  const loadSubgraphDetail = async () => {
+    try {
+      const subgraphData = await getFundraiserDetails(fundraiser.contract_address.toLowerCase())
+      console.log({ subgraphData })
+      setSubgraphDetail(subgraphData)
+    } catch (Err) {
+      console.log("loadSubgraphDetail", Err)
+    }
+  }
+  useEffect(() => {
+    console.log({ fundraiser });
+    if (fundraiser) {
+      loadSubgraphDetail()
+    }
+  }, [fundraiser]);
+
+  useEffect(() => {
+    console.log({ subgraphDetail });
+    
+  }, [subgraphDetail]);
+
+
+
+  useEffect(() => {
+    setInterval(() => {
+      loadData();
+    }, 5000);
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setDataLoading(true);
+    try {
+      const web3 = new Web3(config.RPC);
+      const donationContract = new web3.eth.Contract(
+        CampaignAbi,
+        fundraiser.contract_address
+      );
+      const totalRaised = await donationContract.methods.totalPaid().call();
+
+      setContractData({ totalRaised: totalRaised / 1e18 });
+    } catch (err) {
+      console.log("saasas", err);
+    }
+    setDataLoading(false);
+  };
+  return (
+    <div style={{ display: "block" }}>
+
+      <Box1>
+        <DonationModal
+          fundraiser={fundraiser}
+          setOpen={setShowDonationModal}
+          open={showDonationModal}
+        />
+
+        <Button
+          disabled={fundraiser.fundraisers_status !== "APPROVED"}
+          style={{ width: "12rem", background: "#FFF", color: "#2D7B43" }}
+          onClick={() => {
+            setShowDonationModal(true);
+          }}
+        >
+          {fundraiser.fundraisers_status === "APPROVED"
+            ? "Donate"
+            : "Donation not Enabled"}
+        </Button>
+
+        {/* <Button
         style={{
           width: "12rem",
           background: "#FFF",
@@ -188,38 +329,45 @@ const DonationPanel = ({ fundraiser }) => {
         }}
       >
         Share Now
-      </Button>
+      </Button> */}
 
-      <H style={{ margin: "4rem 0 1rem 0" }}>$ 0</H>
+        <SocialShare link={window.location.href} />
 
-      <Container>
-        <T style={{ margin: "0", textAlign: "center" }}>
-          raised of ${fundraiser.goalAmount} goal
-        </T>
-        <Line />
-        <Flex>
-          <div>
-            <T style={{ margin: "0" }}>Created At</T>
-            <T style={{ fontSize: "0.85rem" }}>
-              {moment(fundraiser.createdAt).format("DD MMM YYYY hh:mm a")}
-            </T>
-          </div>
+        <H style={{ margin: "4rem 0 1rem 0" }}>$ {contractData.totalRaised}</H>
 
-          <div>
-            <T style={{ margin: "0" }}>Status </T>
-            <T style={{ fontSize: "0.85rem" }}>
-              {fundraiser.fundraisers_status}
-            </T>
-          </div>
+        <Container>
+          <T style={{ margin: "0", textAlign: "center" }}>
+            raised of ${fundraiser.goalAmount} goal
+          </T>
+          <Line
+            percent={
+              (Number(contractData.totalRaised) / Number(fundraiser.goalAmount)) *
+              100
+            }
+          />
+          <Flex>
+            <div>
+              <T style={{ margin: "0" }}>Created At</T>
+              <T style={{ fontSize: "0.85rem" }}>
+                {moment(fundraiser.createdAt).format("DD MMM YYYY hh:mm a")}
+              </T>
+            </div>
 
-          {/* <div>
+            <div>
+              <T style={{ margin: "0" }}>Status </T>
+              <T style={{ fontSize: "0.85rem" }}>
+                {fundraiser.fundraisers_status}
+              </T>
+            </div>
+
+            {/* <div>
                         <T style={{textAlign:'right',margin:'0'}}>Ends on</T>
                         <T style={{textAlign:'right',fontSize:'0.85rem'}}>29 jun 10:00pm</T>
                     </div> */}
-        </Flex>
-      </Container>
+          </Flex>
+        </Container>
 
-      {/* <SwitchSelector
+        {/* <SwitchSelector
                 onChange={onChange}
                 options={options}
                 initialSelectedIndex={initialSelectedIndex}
@@ -227,8 +375,57 @@ const DonationPanel = ({ fundraiser }) => {
                 fontColor={"#02A95C"}
                 style={{height:'0.2rem'}}
             /> */}
-      <Lower></Lower>
-    </Box>
+
+
+        
+
+        {subgraphDetail ? <div
+          style={{
+            width: "25rem",
+            // display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginTop: '5px',
+            marginBottom: '5px',
+          }}
+        >
+          <p style={{ fontWeight: 'bold', color: '#fff' }}>Disbursement Details</p>
+
+          {subgraphDetail.disbursements.map((item, index) => {
+            return <OneDisbursementItem data={item} key={index} />
+          })}
+        </div> : null}
+
+
+
+
+
+
+
+
+        {subgraphDetail ? <div
+          style={{
+            width: "25rem",
+            // display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginTop: '5px',
+            marginBottom: '5px',
+          }}
+        >
+          <p style={{ fontWeight: 'bold', color: '#fff' }}>Donations Details (Latest #5)</p>
+
+          {subgraphDetail.dontations.map((item, index) => {
+          
+            return <OneDonationItem data={item} key={index} />
+          })}
+        </div> : null}
+
+
+      </Box1>
+
+    
+    </div>
   );
 };
 

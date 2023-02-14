@@ -3,7 +3,6 @@ import styled from "styled-components";
 import theme from "styled-theming";
 import Tilt from "react-parallax-tilt";
 import { H, T } from "../../Home/Page2/Page2";
-import { Line, Circle } from "rc-progress";
 import { Button } from "../../../components/Navbar/Navbar";
 import SwitchSelector from "react-switch-selector";
 
@@ -274,13 +273,14 @@ const DocsTab = ({fundraiser}) => {
 
 
 
-const BigCard = ({ fundraiser }) => {
+const BigCard = ({ fundraiser,isForPreview }) => {
   
   // const initialSelectedIndex = options.findIndex(({ value }) => value === "bar");
   const [selectedTabIndex,setSelectedTab] = useState(0)
  
   
   
+  console.log("dssds",fundraiser)
   const renderTab = () => {
     if (selectedTabIndex == 0) {
       return <AboutTab fundraiser={ fundraiser} />
@@ -292,11 +292,22 @@ const BigCard = ({ fundraiser }) => {
   }
 
 
+  const getImage = () => {
+
+    console.log("saasasas",isForPreview, fundraiser.featuredImage )
+    if (isForPreview && fundraiser.featuredImage) {
+      
+      return URL.createObjectURL(fundraiser.featuredImage)
+    } 
+    return fundraiser.featuredImage
+
+  }
+
   return (
     <Box>
       <Upper>
         <img
-          src={fundraiser.featuredImage}
+          src={getImage() }
           alt=""
           style={{ width: "100%", height: "100%", borderRadius: "0.75rem" }}
         />

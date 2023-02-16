@@ -470,9 +470,14 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
               /> */}
 
               <div style={{margin:'0 0 0 1rem'}}>
-                <CountryDropdown  id="UNIQUE_ID" className='countrySelect' preferredCountries={['in', 'us']}  value=""  onChange={(r) => {
-                    setInfo({ ...info, country: r.target.value });
-                  }}></CountryDropdown> 
+                <CountryDropdown  id="UNIQUE_ID" className='countrySelect' preferredCountries={['in', 'us']}  value=""  
+                //  onChange={(r) => {
+                //     setInfo({ ...info, country: r.target.value });
+                //   }}
+                  handleChange={e => {
+                    setInfo({ ...info, country: e.target.value  });
+                  }}
+                  />
               </div>
 
             </div>
@@ -528,10 +533,11 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                <PhoneInput
                       international
                       defaultCountry="IN"
-                      value={info.mobile}
+                      
                       onChange={(r) => {
-                        setInfo({ ...info, mobile: r.target.value });
-                      }}
+                        setInfo({ ...info, mobile : r });
+                        
+                       }}
                       className="countrySelect"
                       />
               </div>

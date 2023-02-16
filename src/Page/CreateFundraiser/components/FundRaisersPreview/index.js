@@ -20,7 +20,7 @@ const Sec = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 8rem 0 3rem 0;
+   // padding: 8rem 0 3rem 0;
     background-color: rgba(249, 232, 202, 1);
     background-repeat: no-repeat;
     background-image: url();
@@ -159,7 +159,7 @@ const Line = styled.div`
 
 
 const Box = styled.div`
-  width: 30rem;
+  width: 35rem;
   background-color: #2d7b43;
   display: flex;
   flex-direction: column;
@@ -237,7 +237,7 @@ const FundraiserPreview = ({fundraiser,isLoading,onConfirm,onNext,isDeployed}) =
     return (
         <Sec id="">
           <Width>
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {/* <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}> */}
                     
                 <Heading style={{color:"black"}}>
               Preview
@@ -246,7 +246,7 @@ const FundraiserPreview = ({fundraiser,isLoading,onConfirm,onNext,isDeployed}) =
               {fundraiser.fundraiserName}
               </Heading>
               <Line />
-            </div>
+            {/* </div> */}
           
             <Flex>
             <BigCard fundraiser={fundraiser} isForPreview={true} />

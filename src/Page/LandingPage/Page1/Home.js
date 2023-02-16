@@ -177,6 +177,12 @@ const ButtonR = styled(Button)`
   background: transparent;
   min-width: 15rem;
   border: 2px solid rgba(176, 163, 144, 1);
+
+  &:hover{
+    color: green !important;
+    border: 2px solid green;
+  }
+
   @media only screen and (max-width: 768px) {
     margin: 1rem 0 0 0;
   }

@@ -1,139 +1,159 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-// import './Css.css'
+//import './Css.css'
 import { Button } from "../../../components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 // import Register3 from '../Registration3/Registration3';
 import { useDispatch } from "react-redux";
 import logo from "../../../components/Navbar/logo.svg";
 import toast from "react-hot-toast";
+import CountryDropdown from 'country-dropdown-with-flags-for-react'; 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+import '../../1Registration/Wwe.css'
 
 const T = styled.p`
-  color: #000;
-  font-weight: 500;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  width: 100%;
-
-  @media only screen and (max-width: 768px) {
-    font-weight: 510;
+    color: #000;
+    font-weight: 500;
     font-size: 1rem;
-  }
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+    
+    @media only screen and (max-width: 768px) {
+        font-weight: 510;
+        font-size: 1rem;
+        
+      }
 `;
 
 const Ht = styled.h1`
-  color: #000;
-  font-weight: 500;
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-
-  @media only screen and (max-width: 768px) {
-    font-weight: 510;
-    font-size: 1rem;
-  }
+    color: #000;
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    
+    @media only screen and (max-width: 768px) {
+        font-weight: 510;
+        font-size: 1rem;
+        
+      }
 `;
 
 const Left = styled.div`
-  width: 35%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 1rem;
-  padding: 1rem;
-  //   @media only screen and (max-width: 1100px) {
-  //     width: 50%;
-  // }
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: #FFF;
+        border-radius: 1rem;
+      padding: 1rem;
+        //   @media only screen and (max-width: 1100px) {
+        //     width: 50%;
+        // }
+   
 
-  @media only screen and (max-width: 998px) {
-    width: 35rem;
-    padding: 1rem 0;
-    margin: 7rem 0 0 0;
-  }
+    @media only screen and (max-width: 998px) {
+     
+        width: 35rem;
+        padding: 1rem  0;
+        margin: 7rem 0 0 0;
+       
+      }
 
-  @media only screen and (max-width: 768px) {
-    width: 95%;
-    padding: 1rem 0;
-    margin: 7rem 0 0 0;
-  }
+      @media only screen and (max-width: 768px) {
+     
+        width: 95%;
+        padding: 1rem  0;
+        margin: 7rem 0 0 0;
+       
+      }
 `;
 
 const Right = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 60%;
-
-  @media only screen and (max-width: 998px) {
-    width: 100%;
-    margin: 0 0 0 0;
-  }
-
-  @media only screen and (max-width: 998px) {
-    width: 95%;
-  }
+        display: grid;
+        place-items: center;
+        justify-content: center;
+        flex-direction: column;
+      align-items: center;
+        width: 60%;
+      
+   
+        @media only screen and (max-width: 998px) {
+     
+            width: 100%;
+            margin: 4rem 0 0 0;
+          
+           
+          }
+        
+          @media only screen and (max-width: 998px) {
+     
+            width: 95%;
+           
+          }
+     
 `;
 
 const Box = styled.div`
-  display: flex;
-  width: 95%;
-  min-height: 30rem;
-  background-color: #ffdea580;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  border-radius: 1rem;
-  position: relative;
-
-  @media only screen and (max-width: 998px) {
-    flex-direction: column;
+    display: flex;
+    width: 95%;
     min-height: 30rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
+    border-radius: 1rem;
+    position: relative;
+    justify-content: space-around;
+ 
+
+    @media only screen and (max-width: 998px) {
+        
+        flex-direction: column;
+        min-height: 30rem;
+       
+        justify-content: space-between;
+ 
+     }
+`
 
 const Back = styled.div`
-  margin: 3rem 0;
-  cursor: pointer;
+    margin: 3rem 0;
+    cursor: pointer;
 
-  @media only screen and (max-width: 998px) {
-    position: absolute;
-    top: 0;
-    right: 2rem;
-  }
-`;
+    @media only screen and (max-width: 998px) {
+        position: absolute;
+        top: 0;
+        right: 2rem;
+    }  
+
+`
 const Details = styled.div`
-  background: linear-gradient(
-      180deg,
-      rgba(2, 169, 92, 0.5) 0%,
-      rgba(34, 170, 48, 0.5) 100%
-    ),
-    linear-gradient(0deg, #ffffff, #ffffff);
-  padding: 3rem 2rem 2rem 2rem;
-  border: 0.25rem solid #ffffff;
-  border-radius: 1.25rem;
-  margin: 0 1rem 4rem 1rem;
+background: linear-gradient(180deg, rgba(2, 169, 92, 0.5) 0%, rgba(34, 170, 48, 0.5) 100%),
+linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    padding: 3rem 2rem 2rem 2rem;
+    border: 0.25rem solid #FFFFFF;
+    border-radius: 1.25rem;
+   // margin: 0 1rem 4rem 1rem;
 
-  @media only screen and (max-width: 998px) {
-    width: 100%;
-    margin: 0 0 2rem 0;
-    padding: 3rem 0.5rem 2rem 0.5rem;
-  }
-`;
+    @media only screen and (max-width: 998px) {
+        width: 100%;
+        margin: 0 0 2rem 0;
+        padding: 3rem 0.5rem 2rem 0.5rem;
+    } 
+
+`
 const Input = styled.input`
-  width: 20rem;
 
-  @media only screen and (max-width: 998px) {
-    width: 100%;
-  }
-`;
+    width: 20rem;
+
+    @media only screen and (max-width: 998px) {
+        width: 100%;
+    } 
+  
+`
 const H = styled.p`
+
   font-size: 1rem;
   // font-weight: light;
   // margin-bottom: 2rem;
@@ -144,6 +164,7 @@ const H = styled.p`
     font-weight: bold;
   }
 `;
+
 
 const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   //     const navigate = useNavigate ();
@@ -158,7 +179,9 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   };
 
   const [info, setInfo] = useState({
-    name: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     dob: "",
     country: "",
     mobile: "",
@@ -169,7 +192,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   const dispatch = useDispatch();
 
   const validate = () => {
-    if (!info.name) {
+    if (!info.firstName) {
       console.log("dsdsdsdsd111");
       toast.error("Enter Name");
       return false;
@@ -224,12 +247,11 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   }, [info]);
 
   return (
-    <div
-      style={{
-        display: hide ? "none" : "block",
-      }}
+    <Box
+    style={{
+      display: hide ? "none" : "flex",
+    }}
     >
-      <Box>
         <Left>
           <div style={{ width: "100%" }}>
             <img
@@ -258,17 +280,18 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
             >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
-                  Your Name
+                  First Name
                 </H>
+               
               </div>
 
               <Input
-                placeholder="Enter Name"
+                placeholder="Enter First Name"
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
                 value={info.name}
                 onChange={(r) => {
-                  setInfo({ ...info, name: r.target.value });
+                  setInfo({ ...info, firstName: r.target.value });
                 }}
                 style={{
                   height: "3.75rem",
@@ -279,6 +302,77 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 }}
               />
             </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#FFF",
+                width: "100%",
+                borderRadius: "1rem",
+                margin: "1rem 0",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
+                  Midle Name
+                </H>
+               
+              </div>
+
+              <Input
+                placeholder="Enter Middle Name"
+                //value={"21 July 2022. 1200 UTC+1"}
+                className="input"
+                value={info.name}
+                onChange={(r) => {
+                  setInfo({ ...info, middleName: r.target.value });
+                }}
+                style={{
+                  height: "3.75rem",
+                  // border: "1px solid rgba(0,0,0,0.2)",
+                  borderRadius: "0.75rem",
+                  margin: "2rem 0 0 0",
+                  margin: "0 0 0 1rem",
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#FFF",
+                width: "100%",
+                borderRadius: "1rem",
+                margin: "1rem 0",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
+                  Last Name
+                </H>
+               
+              </div>
+
+              <Input
+                placeholder="Enter Last Name"
+                //value={"21 July 2022. 1200 UTC+1"}
+                className="input"
+                value={info.name}
+                onChange={(r) => {
+                  setInfo({ ...info, lastName: r.target.value });
+                }}
+                style={{
+                  height: "3.75rem",
+                  // border: "1px solid rgba(0,0,0,0.2)",
+                  borderRadius: "0.75rem",
+                  margin: "2rem 0 0 0",
+                  margin: "0 0 0 1rem",
+                }}
+              />
+            </div>
+
             <div
               style={{
                 display: "flex",
@@ -315,15 +409,16 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 className="input"
                 value={info.dob}
                 onChange={(r) => {
-                  console.log(r);
+                  console.log(r)
                   setInfo({ ...info, dob: r.target.value });
                 }}
                 style={{
                   height: "3.75rem",
-                  // border: "1px solid rgba(0,0,0,0.2)",
                   borderRadius: "0.75rem",
-                  margin: "2rem 0 0 0",
-                  margin: "0 0 0 1rem",
+                  margin: "0 1rem",
+                 // background:'red',
+                  display: 'flex',
+                  justifyContent: 'space-around',
                 }}
               />
             </div>
@@ -356,7 +451,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 </svg>
               </div>
 
-              <Input
+              {/* <Input
                 type="Text"
                 placeholder="Enter Country"
                 className="input"
@@ -372,7 +467,14 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                   margin: "2rem 0 0 0",
                   margin: "0 0 0 1rem",
                 }}
-              />
+              /> */}
+
+              <div style={{margin:'0 0 0 1rem'}}>
+                <CountryDropdown  id="UNIQUE_ID" className='countrySelect' preferredCountries={['in', 'us']}  value=""  onChange={(r) => {
+                    setInfo({ ...info, country: r.target.value });
+                  }}></CountryDropdown> 
+              </div>
+
             </div>
 
             <div
@@ -405,7 +507,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
               </svg> */}
               </div>
 
-              <Input
+              {/* <Input
                 type="Text"
                 placeholder="Enter Mobile Number"
                 //value={"21 July 2022. 1200 UTC+1"}
@@ -421,7 +523,18 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                   margin: "2rem 0 0 0",
                   margin: "0 0 0 1rem",
                 }}
-              />
+              /> */}
+              <div style={{margin:'0 0 0 1rem'}}>
+               <PhoneInput
+                      international
+                      defaultCountry="IN"
+                      value={info.mobile}
+                      onChange={(r) => {
+                        setInfo({ ...info, mobile: r.target.value });
+                      }}
+                      className="countrySelect"
+                      />
+              </div>
             </div>
 
             <div
@@ -539,12 +652,6 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
           </Details>
         </Right>
       </Box>
-      {/* 
-      <Toaster
-  position="top-center"
-  reverseOrder={false}
-/> */}
-    </div>
   );
 };
 

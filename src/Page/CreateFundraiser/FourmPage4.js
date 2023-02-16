@@ -32,7 +32,7 @@ const Width = styled.div`
      // flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        background: #FFDEA580;
+    
       border-radius: 1.75rem;
       position: relative;
     
@@ -41,7 +41,7 @@ const Width = styled.div`
     }
     @media only screen and (max-width: 1100px) {
         flex-direction: column;
-        background: #FFDEA580;
+
     }
 `
 
@@ -240,7 +240,7 @@ const FourmPage4 =({ onNext, hide, onBack }) => {
                             onChange={(t) => {
                                 setData({...data,fundraiserName:t.target.value})
                             }}
-                            placeholder="Donate to help" className="input1" style={{ height: "4rem", width: "10rem", border: '1px solid rgba(0,0,0,0.2)', borderRadius: '0.75rem', width: '100%', margin: '2rem 0 0 0' }} />
+                            placeholder="Donate to help" className="input1" style={{ height: "4rem", width: "10rem", border: '1px solid rgba(0,0,0,0.2)', borderRadius: '0.75rem', width: '100%', margin: '2rem 0 0 0',padding:"0 0 0 2rem" }} />
                                 
                          
                            
@@ -253,7 +253,7 @@ const FourmPage4 =({ onNext, hide, onBack }) => {
                                  onChange={(t) => {
                                     setData({...data,fundraiserDescription:t.target.value})
                                 }}
-                                placeholder="Hi,my name is..." className="input1" style={{ height: "8rem", width: "10rem", border: '1px solid rgba(0,0,0,0.2)', borderRadius: '0.75rem', width: '100%', margin: '2rem 0 0 0' }} />
+                                placeholder="Hi,my name is..." className="input1" style={{ height: "8rem", width: "10rem", border: '1px solid rgba(0,0,0,0.2)', borderRadius: '0.75rem', width: '100%', margin: '2rem 0 0 0',padding:"0 0 0 2rem"}} />
                             </div>
                             <div style={{display:'grid',placeItems:'center'}}>
                                 <Button style={{borderRadius:'2rem',width:'9rem',margin:'2rem 0 0 0',border:'2px solid #FFFFFF',fontSize:'2rem'}}

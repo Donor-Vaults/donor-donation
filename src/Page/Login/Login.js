@@ -235,7 +235,9 @@ const Login = () => {
           {isLoading ? "Logging in ..." : "LOGIN"}
         </Button>
       </Container>
-      <Link fontSize={"20px"} href="/register">
+      <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
+        textDecoration:'none',color: '#1B1212',fontWeight:'bold'
+      }}>
         or Create Account
       </Link>
     </Width>

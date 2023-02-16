@@ -25,21 +25,36 @@ export const backgroundColor = theme("theme", {
 });
 
 const Sec = styled.section`
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  // flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(249, 232, 202, 1);
-  padding: 8rem 0 2rem 0;
-  @media only screen and (max-width: 768px) {
     min-height: 100vh;
     width: 100%;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+    display: flex;
+    // flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       background-color: rgba(249, 232, 202, 1);
+       padding: 8rem 0 2rem 0;
+    @media only screen and (max-width: 768px) {
+        min-height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+      }
 `;
+
+const Width = styled.div`
+      width: 1500px;
+      display: flex;
+     flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+    @media only screen and (max-width: 1400px) {
+        width: 95%;
+    }
+    @media only screen and (max-width: 1100px) {
+        flex-direction: column;
+    }
+`
 
 const Container = styled.div`
   //   width: 1200px;
@@ -83,20 +98,7 @@ const Gradient = styled.div`
     justify-content: center;
   }
 `;
-const Width = styled.div`
-  width: 1300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 
-  @media only screen and (max-width: 1400px) {
-    width: 95%;
-  }
-  @media only screen and (max-width: 1100px) {
-    flex-direction: column;
-  }
-`;
 
 const Registration = () => {
   const [index, setIndex] = useState(0);
@@ -173,14 +175,11 @@ const Registration = () => {
   return (
     <Sec id="">
       <Width>
-        <Box>
-          <Gradient>
-            <Container>{getFragment()}</Container>
-          </Gradient>
-          <Link fontSize={"20px"} href="/login">
-            Already have an account? Login
-          </Link>
-        </Box>
+        {getFragment()}
+        <Link fontSize={"20px"} href="/login" style={{margin:'2rem 0 0 0',
+        textDecoration:'none',color: '#1B1212',fontWeight:'bold'}}>
+          Already have an account? Login
+        </Link>
       </Width>
     </Sec>
   );

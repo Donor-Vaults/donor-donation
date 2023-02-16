@@ -23,6 +23,7 @@ export const bColor = theme("theme", {
 
 const Box = styled(Tilt)`
   width: 25rem;
+  min-height: 54rem;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -158,7 +159,7 @@ const FundraiserCard = (props) => {
           </T>
 
           <div>
-            <Button style={{ borderRadius: "1.5rem", minWidth: "9rem" }}>
+            <Button style={{ borderRadius: "1.5rem", minWidth: "9rem"}}>
               <Link
                 to={`/fundraiser?id=${id}`}
                 style={{ color: "#FFF", textDecoration: "none" }}

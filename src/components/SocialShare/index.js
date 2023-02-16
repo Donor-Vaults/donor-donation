@@ -2,6 +2,7 @@
 import { Card, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { Component } from 'react';
+import { Button } from "../Navbar/Navbar";
 import {
   FacebookShareCount,
   PinterestShareCount,
@@ -59,17 +60,25 @@ export const SocialShare = ({link}) => {
     const shareUrl = link;
     const title = 'Donor Platfrom';
     return <Box mt={1}>
-        <Typography variant="h6"
-            color="#fff"
-            textAlign={"center"}>
+        {/* <Typography variant="h6"
+            color="#000"
+           // textAlign={"center"}
+          >
             Share Now
-        </Typography>
+        </Typography> */}
+        <Button
+          //disabled={fundraiser.fundraisers_status !== "APPROVED"}
+          style={{ width: "12rem", background: "#FFF", color: "#2D7B43" }}
+        >
+          Share Now
+        </Button>
         
-         <div className="Demo__container" style={{
-        display: "flex",
-        // marginTop:"10px"
-    }}>
-    <div className="Demo__some-network">
+         <div className="Demo__container" 
+          style={{width:'100%',display:'flex',justifyContent:'space-evenly',
+            margin:'1rem 0 0 0'
+        }}
+         >
+    <div className="Demo__some-network" >
       <FacebookShareButton
         url={shareUrl}
         quote={title}

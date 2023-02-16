@@ -3,10 +3,6 @@ import styled from 'styled-components'
 
 const WideBox = (props) => {
 
-
-
-  
-
     const StyledBox = styled.div`
         border-radius: 1rem;
         border: 2px solid rgba(0,0,0,0.2);
@@ -18,6 +14,7 @@ const WideBox = (props) => {
         align-items: center;
         justify-content: space-between;
         margin: 1rem 0 0 0;
+        cursor: pointer !important;
         // background-color: #FFF;
     `
     const T = styled.p`

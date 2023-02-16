@@ -96,23 +96,23 @@ const Right = styled.div`
 `;
 
 const Box = styled.div`
-  display: flex;
-  width: 95%;
-  min-height: 30rem;
-  background-color: #ffdea580;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  border-radius: 1rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media only screen and (max-width: 998px) {
+    display: flex;
+    width: 95%;
     min-height: 30rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
+    border-radius: 1rem;
+    position: relative;
+    justify-content: space-around;
+ 
+
+    @media only screen and (max-width: 998px) {
+        
+        flex-direction: column;
+        min-height: 30rem;
+       
+        justify-content: space-between;
+ 
+     }
+`
 
 
 const Details = styled.div`
@@ -180,11 +180,13 @@ const Part3 = ({ hide }) => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ display: hide ? "none" : "block" }}>
-        <Width>
-          <Box onClick={() => dispatch({ type: "PATHNAME7" })}>
-         
-
+    
+      
+          <Box onClick={() => dispatch({ type: "PATHNAME7" })}
+            style={{
+              display: hide ? "none" : "flex",
+            }}
+          >
             <Details>
               <Man>
                 <img
@@ -201,8 +203,8 @@ const Part3 = ({ hide }) => {
               </H>
             </Details>
           </Box>
-        </Width>
-    </div>
+     
+   
   );
 };
 

@@ -13,6 +13,7 @@ const Tag = ({selectedCategory,onClick,Text}) => {
         color: #FFF;
         display: grid;
         place-items: center;
+        cursor: pointer;
        // width: 14rem;
     `
 

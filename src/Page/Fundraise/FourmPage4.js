@@ -211,7 +211,7 @@ const FourmPage4 = () => {
                             Name your fundraiser</T>
    
                        
-                                <input type="Text" placeholder="Donate to help"  className="input1" style={{height:"4rem",width:"10rem",border:'1px solid rgba(0,0,0,0.2)',borderRadius:'0.75rem',width:'100%',margin:'2rem 0 0 0'}} />
+                                <input type="Text" placeholder="Donate to help"  className="input1" style={{height:"4rem",width:"10rem",border:'1px solid rgba(0,0,0,0.2)',borderRadius:'0.75rem',width:'100%',margin:'2rem 0 0 0',padding:"0 0 0 2rem"}} />
                                 
                          
                            
@@ -220,7 +220,7 @@ const FourmPage4 = () => {
                             Details on your fundraising</T>
    
                        
-                                <input type="Text" placeholder="Hi,my name is..."  className="input1" style={{height:"8rem",width:"10rem",border:'1px solid rgba(0,0,0,0.2)',borderRadius:'0.75rem',width:'100%',margin:'2rem 0 0 0'}} />
+                                <input type="Text" placeholder="Hi,my name is..."  className="input1" style={{height:"8rem",width:"10rem",border:'1px solid rgba(0,0,0,0.2)',borderRadius:'0.75rem',width:'100%',margin:'2rem 0 0 0',padding:"0 0 0 2rem"}} />
                             </div>
                             <div style={{display:'grid',placeItems:'center'}}>
                                 <Button style={{borderRadius:'2rem',width:'9rem',margin:'2rem 0 0 0',border:'2px solid #FFFFFF',fontSize:'2rem'}}

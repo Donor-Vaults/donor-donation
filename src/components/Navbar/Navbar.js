@@ -81,6 +81,7 @@ const Link2 = styled(RouterLink)`
   text-decoration: none;
   color: #FFF !important;
   cursor: pointer;
+  font-weight: 550;
 
   @media only screen and (max-width: 768px) {
     
@@ -208,7 +209,7 @@ const changeBackground = () => {
                 href="http://donoooor-valuts.s3-website-us-west-2.amazonaws.com/#/bsctest" spy={true}
                 smooth={true} offset={-80}>Vault</Link3>
                   {/* <Link2 to="/donate" spy={true} smooth={true} offset={-80}>Donate</Link2>  */}
-                  <Link2 to="/start" spy={true} smooth={true} offset={-80}>Start a Fundraise</Link2>  
+                  <Link2 to="/start" spy={true} smooth={true} offset={-80}>Start a Fundraiser</Link2>  
                   <Link2 to="/docs" spy={true} smooth={true} offset={-80}>Docs</Link2>
                   <Link2 to="/work" spy={true} smooth={true} offset={-80}>How It Works</Link2> 
                   {

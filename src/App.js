@@ -27,6 +27,9 @@ import CreateFundraiser from "./Page/CreateFundraiser";
 import InverseProtected from "./InverseProtected";
 import { setGlobalFundraisers } from "./store/slices/fundraisersSlice";
 import FundraiserInfo from "./Page/FundraiserInfo";
+import Part1 from "./Page/Registration/Parts/Part1";
+import Part2 from "./Page/Registration/Parts/Part2";
+import Part3 from "./Page/Registration/Parts/Part3";
 const App = () => {
   const userResp = useQuery(GetUser);
   const fundraiserResp = useQuery(GetAllFundraisers);

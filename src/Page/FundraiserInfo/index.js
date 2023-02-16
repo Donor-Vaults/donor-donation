@@ -71,9 +71,8 @@ const Tp = styled.p`
 const Flex = styled.div`
         width: 100%;
         display: flex;
-        //
         justify-content: space-between;
-       // align-items: center;
+        align-items: center;
      
     @media only screen and (max-width: 1250px) {
        

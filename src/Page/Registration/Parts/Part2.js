@@ -173,23 +173,23 @@ const Right = styled.div`
 `;
 
 const Box = styled.div`
-  display: flex;
-  width: 95%;
-  min-height: 30rem;
-  background-color: #ffdea580;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  border-radius: 1rem;
-  position: relative;
-
-  @media only screen and (max-width: 998px) {
-    flex-direction: column;
+    display: flex;
+    width: 95%;
     min-height: 30rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
+    border-radius: 1rem;
+    position: relative;
+    justify-content: space-around;
+ 
+
+    @media only screen and (max-width: 998px) {
+        
+        flex-direction: column;
+        min-height: 30rem;
+       
+        justify-content: space-between;
+ 
+     }
+`
 
 const Back = styled.div`
   margin: 3rem 0;
@@ -301,12 +301,12 @@ const Part2 = ({ hide, onNext, onPrev }) => {
   };
 
   return (
-    <div
-      style={{
-        display: hide ? "none" : "block",
-      }}
-    >
-      <Box>
+    
+      <Box
+        style={{
+          display: hide ? "none" : "flex",
+        }}
+      >
         <Left>
           <div style={{ width: "100%" }}>
             {/* <img src={logo} alt='' style={{width:'5rem',height:'4.5rem',margin:'0 0 2rem 0'}} /> */}
@@ -440,7 +440,7 @@ const Part2 = ({ hide, onNext, onPrev }) => {
           </Details>
         </Right>
       </Box>
-    </div>
+  
   );
 };
 

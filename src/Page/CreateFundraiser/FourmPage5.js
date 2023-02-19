@@ -7,6 +7,8 @@ import logo from "../../components/Navbar/logo.svg";
 import I from "./components/doc.svg";
 import { useDispatch } from "react-redux";
 import { uploadFile } from "../../utils/upload";
+import { Cross } from "./FourmPage3";
+import { ImCross } from "react-icons/im"; 
 
 const Sec = styled.section`
   min-height: 100vh;
@@ -50,6 +52,7 @@ const InputContainer = styled.div`
   height: 25rem;
   border-radius: 0.75rem;
   background-color: #fff;
+  position: relative; 
 `;
 
 const Input = styled.input``;
@@ -302,22 +305,31 @@ const FourmPage5 = ({ onNext, hide, onBack }) => {
             <div>
               <InputContainer
                 onClick={() => {
+                  console.log(inputFile.current.click,'debug',data)
                   inputFile.current.click();
                 }}
               >
                 {data.supportingDocuments.length > 0 ? (
                   <>
+                    <Cross>
+                      <ImCross style={{fontSize:'1.75rem'}}
+                        onClick={ () => {
+                          setData({ supportingDocuments: [] });
+                        } }
+                      />
+                    </Cross>
                     <iframe
                       height={400}
                       width={400}
                       src={URL.createObjectURL(data.supportingDocuments[0])}
                       title="title"
-                    ></iframe>
+                    />
 
                     {/* <Document file={data.supportingDocuments[0]} /> */}
                   </>
                 ) : (
                   <>
+                    
                     <Input
                       type="image"
                       src={I}
@@ -347,6 +359,7 @@ const FourmPage5 = ({ onNext, hide, onBack }) => {
                   accept="application/pdf"
                   ref={inputFile}
                   onChange={(f) => {
+                    console.log(f,'19FEBB')
                     if (f.target.files.length > 0) {
                       const files = [...data.supportingDocuments];
                       files.push(f.target.files[0]);

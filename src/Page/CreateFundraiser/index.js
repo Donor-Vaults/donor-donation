@@ -48,7 +48,7 @@ const CreateCampaign = () => {
       console.log("createeee", resp);
       setIndex(index + 1);
 
-      setData(info)
+     // setData(info)
 
     } catch (err) {
       console.log("wsdsdsdd", err);

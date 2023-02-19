@@ -12,6 +12,12 @@ import CountryDropdown from 'country-dropdown-with-flags-for-react';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import '../../1Registration/Wwe.css'
+import CountryList from 'country-list-with-dial-code-and-flag'
+import { countries } from "../../../config/countries";
+
+
+import { ReactCountryDropdown } from 'react-country-dropdown'
+import 'react-country-dropdown/dist/index.css'
 
 const T = styled.p`
     color: #000;
@@ -179,9 +185,10 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   };
 
   const [info, setInfo] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
+    // firstName: "",
+    // middleName: "",
+    // lastName: "",
+    name:"",
     dob: "",
     country: "",
     mobile: "",
@@ -189,10 +196,37 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
     password: "",
   });
 
+  const getCountryCode = (name)=>{
+    const code = countries.find((item) => {
+       return (
+        item.name === name
+       ) 
+     })
+   return code.code
+  }
+
+  const handleSelect = (co) => {
+    console.log(co,'kk')
+    /* returns the details on selected country as an object
+    	{
+          name: "United States of America", 
+          code: "US", 
+          capital: "Washington, D.C.", 
+          region: "Americas", 
+          latlng: [38, -97]
+        }
+    */
+      setInfo({ ...info, country: co.target.value });
+  }
+
+  const [ firstName, setFirstName ] = useState('');
+  const [ middleName, setMiddleName ] = useState('');
+  const [ lastName, setLastName ] = useState('');
+
   const dispatch = useDispatch();
 
   const validate = () => {
-    if (!info.firstName) {
+    if (!info.name) {
       console.log("dsdsdsdsd111");
       toast.error("Enter Name");
       return false;
@@ -233,10 +267,12 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
     return true;
   };
   const handleOnNext = () => {
-    console.log("ddsdsds");
+
     const isValid = validate();
+  
     if (isValid) {
-      onNext();
+      
+      onNext(info);
     }
   };
 
@@ -245,6 +281,15 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
       onInfoChanged(info);
     }
   }, [info]);
+
+  useEffect(() => {
+    if (info) {
+      const fullName = `${firstName+" "+middleName+" "+lastName}`
+      setInfo({...info,name: fullName})
+    }
+  }, [firstName,middleName,lastName]);
+
+
 
   return (
     <Box
@@ -264,6 +309,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
             Your information is collected for legal and security purposes only
           </Ht>
           <T>Please provide us with your basic details</T>
+         
         </Left>
 
         <Right>
@@ -289,9 +335,9 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 placeholder="Enter First Name"
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
-                value={info.name}
+                value={firstName}
                 onChange={(r) => {
-                  setInfo({ ...info, firstName: r.target.value });
+                  setFirstName(r.target.value);
                 }}
                 style={{
                   height: "3.75rem",
@@ -315,7 +361,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
             >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
-                  Midle Name
+                  Middle Name
                 </H>
                
               </div>
@@ -324,9 +370,9 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 placeholder="Enter Middle Name"
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
-                value={info.name}
+                value={info.middleName}
                 onChange={(r) => {
-                  setInfo({ ...info, middleName: r.target.value });
+                  setMiddleName(r.target.value);
                 }}
                 style={{
                   height: "3.75rem",
@@ -359,9 +405,9 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 placeholder="Enter Last Name"
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
-                value={info.name}
+                value={info.lastName}
                 onChange={(r) => {
-                  setInfo({ ...info, lastName: r.target.value });
+                  setLastName(r.target.value);
                 }}
                 style={{
                   height: "3.75rem",
@@ -408,6 +454,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
                 value={info.dob}
+                max="2005-01-01"
                 onChange={(r) => {
                   console.log(r)
                   setInfo({ ...info, dob: r.target.value });
@@ -476,8 +523,10 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 //   }}
                   handleChange={e => {
                     setInfo({ ...info, country: e.target.value  });
+                    console.log(info.country)
                   }}
                   />
+                  {/* <ReactCountryDropdown onSelect={handleSelect} countryCode='IN' /> */}
               </div>
 
             </div>
@@ -530,13 +579,16 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 }}
               /> */}
               <div style={{margin:'0 0 0 1rem'}}>
+                
                <PhoneInput
+                  smartCaret
                       international
+                     // disabled
                       defaultCountry="IN"
-                      
+                      // country="US"
                       onChange={(r) => {
                         setInfo({ ...info, mobile : r });
-                        
+                        console.log(info.mobile)
                        }}
                       className="countrySelect"
                       />

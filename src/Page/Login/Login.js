@@ -11,6 +11,7 @@ import { Link } from "@mui/material";
 import { LoginQuery } from "../../apollo";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export const backgroundColor = theme("theme", {
   light: "#000000",
@@ -28,6 +29,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
+  margin: 0 0 3.5rem 0;
 
   @media only screen and (max-width: 1300px) {
     width: 98%;
@@ -81,6 +83,10 @@ const Button = styled.button`
     border-radius: 0 0 0.5rem 0.5rem;
   }
 `;
+
+const StyledLink = styled(motion.div)`
+
+`
 
 const Gradient = styled.div`
   background: linear-gradient(
@@ -235,11 +241,22 @@ const Login = () => {
           {isLoading ? "Logging in ..." : "LOGIN"}
         </Button>
       </Container>
-      <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
-        textDecoration:'none',color: '#1B1212',fontWeight:'bold'
-      }}>
-        or Create Account
-      </Link>
+      <StyledLink
+        initial={{ x: 0, y: 0 }}
+        animate={{ x: 9, y: 0 }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      >
+        <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
+          textDecoration:'none',color: '#FFF',fontWeight:'bold',
+          backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
+        }}>
+          or Create Account
+        </Link>
+      </StyledLink>
     </Width>
   );
 };

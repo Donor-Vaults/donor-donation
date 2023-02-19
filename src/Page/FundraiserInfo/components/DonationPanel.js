@@ -208,7 +208,7 @@ const DonationPanel = ({ fundraiser }) => {
         CampaignAbi,
         fundraiser.contract_address
       );
-      const totalRaised = await donationContract.methods.totalPaid().call();
+      const totalRaised = await donationContract.methods.totalRaised().call();
 
       setContractData({ totalRaised: totalRaised / 1e18 });
     } catch (err) {

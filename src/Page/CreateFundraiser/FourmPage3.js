@@ -6,6 +6,7 @@ import { Button } from "../../components/Navbar/Navbar";
 import logo from "../../components/Navbar/logo.svg";
 import I from "./components/img.svg";
 import { useDispatch } from "react-redux";
+import { ImCross } from 'react-icons/im'
 
 const Sec = styled.section`
   min-height: 100vh;
@@ -49,11 +50,19 @@ const InputContainer = styled.div`
   height: 25rem;
   border-radius: 0.75rem;
   background-color: #fff;
+  position: relative;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
 `;
+
+export const Cross = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 99;
+`
 
 const Input = styled.input``;
 
@@ -172,6 +181,7 @@ const Details = styled.div`
   border: 0.25rem solid #ffffff;
   border-radius: 1.25rem;
   margin: 0 1rem 4rem 1rem;
+  position: relative;
 
   @media only screen and (max-width: 768px) {
     padding: 3rem 1rem 2rem 1rem;
@@ -257,18 +267,31 @@ const FourmPage3 = ({ onNext, hide, onBack }) => {
             </div>
           </Back>
           <Details>
+            
             <InputContainer
               onClick={() => {
                 inputFile.current.click();
               }}
+              
             >
+              
               {data.featuredImage ? (
+
+
                 <>
+                  <Cross>
+                  <ImCross style={{fontSize:'1.75rem'}}
+                    onClick={ () => {
+                      setData({ featuredImage: null });
+                    } }
+                  />
+                  </Cross>
                   <img
                     src={URL.createObjectURL(data.featuredImage)}
                     height={"400px"}
                     width={"400px"}
                   />
+                  
                 </>
               ) : (
                 <>

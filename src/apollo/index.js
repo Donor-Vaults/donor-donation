@@ -80,6 +80,16 @@ mutation CreateCampaign($benificiary:String!,$category:String!,
 
 // # fundraisers(where:{fundraisers_status:{equals:APPROVED}}){
 
+export const ChangePassword = gql(`
+  mutation UpdatePassoword($newPassword:String,$id:String){
+    updateUser(where:{id:$id},
+      data:{password:{set:$newPassword}}){
+      id
+      
+    }
+  }
+`)
+
   export const GetAllFundraisers = gql(`
 query FundRaisers{
   fundraisers(where:{fundraisers_status:{equals:APPROVED}}){
@@ -113,7 +123,7 @@ benificiary
 export const GetUser = gql(`
 query me{
  me{
-
+id
 country
 
 date_of_birth

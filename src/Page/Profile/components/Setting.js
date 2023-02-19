@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Line } from "rc-progress";
 import Card from "./FundraiserCard";
+import { Button } from "../../../components/Navbar/Navbar";
+import { toast } from "react-hot-toast";
+import { ChangePassword } from "../../../apollo";
+import { useMutation } from "@apollo/client";
+import { useSelector } from "react-redux";
 
 const StyledRaiser = styled.div`
   width: 100%;
@@ -29,7 +34,30 @@ const Setting = () => {
     password: "",
   });
     
-    
+  const [ isLoading, setIsLoading ] = useState(false);
+
+  const [changePass, { loading, error }] = useMutation(ChangePassword);
+
+  const user = useSelector(state => state.user.user)
+
+  const handleChange = async() =>{
+    if(data.password === ""){
+      toast.error("Please enter password to change");
+      return;
+    } 
+    setIsLoading(true);
+    try{
+      await changePass({variables: {
+        newPassword: data.password,
+        id: user.id
+      } });
+      toast.success("Password changes successfully");
+    }
+    catch(error){
+      console.log(error,'Change Pass Error')
+    }
+    setIsLoading(false);
+  }
 
   return (
     <StyledRaiser>
@@ -48,10 +76,20 @@ const Setting = () => {
             height: "4rem",
             border: "1px solid rgba(0,0,0,0.2)",
             borderRadius: "0.5rem",
-            width: "80%",
+            width: "20rem",
             margin: "0.5rem 0 0 0",
           }}
         />
+        <Button 
+          onClick={ () => {
+            handleChange();
+          } }
+          style={{margin:'1rem 0 0 0'}}
+        >
+          {
+            isLoading ? 'Loading...' : "Change Password"
+          } 
+        </Button>
       </div>
     </StyledRaiser>
   );

@@ -58,7 +58,7 @@ import {
 
 export const SocialShare = ({link}) => {
     const shareUrl = link;
-    const title = 'Donor Platfrom';
+    const title = 'Donor Platform';
     return <Box mt={1}>
         {/* <Typography variant="h6"
             color="#000"

@@ -48,8 +48,7 @@ const Setting = () => {
     setIsLoading(true);
     try{
       await changePass({variables: {
-        newPassword: data.password,
-        id: user.id
+        newPassword: data.password
       } });
       toast.success("Password changes successfully");
     }

@@ -27,6 +27,8 @@ import CreateFundraiser from "./Page/CreateFundraiser";
 import InverseProtected from "./InverseProtected";
 import { setGlobalFundraisers } from "./store/slices/fundraisersSlice";
 import FundraiserInfo from "./Page/FundraiserInfo";
+import ForgotPassword from "./Page/Login/ForgotPassword";
+import ResetPassword from "./Page/Login/ResetPassword";
 
 const App = () => {
   const userResp = useQuery(GetUser);
@@ -91,7 +93,22 @@ const App = () => {
           <Route path="/" element={<LadingPage />} />
           <Route path="/allfundraiser" element={<HomeDefault />} />
           <Route path="/fundraise" element={<RegisterationHome />} />
-          <Route
+          <Route path="/forgotPassword" element={
+                          <InverseProtected>
+
+            <ForgotPassword />
+              </InverseProtected>
+          } />
+
+<Route path="/resetpassword" element={
+              <InverseProtected>
+
+            <ResetPassword />
+              </InverseProtected>
+          } />
+
+         
+           <Route
             path="/register"
             element={
               <InverseProtected>
@@ -107,6 +124,8 @@ const App = () => {
               </Protected>
             }
           />
+
+
 
           <Route
             path="/login"

@@ -4,3 +4,8 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
+
+.hoverable:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}

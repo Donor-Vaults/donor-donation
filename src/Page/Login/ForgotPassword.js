@@ -8,7 +8,7 @@ import theme from "styled-theming";
 import { useDispatch } from "react-redux";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from "@mui/material";
-import { LoginQuery } from "../../apollo";
+import { ForgetPasswordQuery } from "../../apollo";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
@@ -46,6 +46,42 @@ const Container = styled.div`
   }
 `;
 
+
+const Sec = styled.section`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(249, 232, 202, 1);
+  padding: 8rem 0 2rem 0;
+  @media only screen and (max-width: 768px) {
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+`;
+
+
+const Gradient = styled.div`
+  background: linear-gradient(
+    180deg,
+    rgba(2, 169, 92, 0.5) 0%,
+    rgba(34, 170, 48, 0.5) 100%
+  );
+  border-radius: 2rem;
+  padding: 3rem;
+
+  @media only screen and (max-width: 768px) {
+    margin: 2rem 0 3rem 0;
+    padding: 3rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 const Line = styled.div`
   height: 3rem;
   width: 1px;
@@ -88,23 +124,7 @@ const StyledLink = styled(motion.div)`
 
 `
 
-const Gradient = styled.div`
-  background: linear-gradient(
-    180deg,
-    rgba(2, 169, 92, 0.5) 0%,
-    rgba(34, 170, 48, 0.5) 100%
-  );
-  border-radius: 2rem;
-  padding: 3rem;
 
-  @media only screen and (max-width: 768px) {
-    margin: 2rem 0 3rem 0;
-    padding: 3rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
 const Width = styled.div`
   width: 1300px;
   display: flex;
@@ -128,10 +148,28 @@ const Margin = styled.div`
   }
 `;
 
-const Login = () => {
+
+const ParentContainer = ({children}) => {
+
+  // console.log(PathName)
+
+  return (
+    <Sec>
+      <Gradient>
+      <div style={{marginTop:30}}>
+          {children}
+        </div>
+   
+        
+     
+     </Gradient>
+    </Sec>
+  );
+};
+const ForgotPassword = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const [login, { loading, error }] = useMutation(LoginQuery);
+  const [forgetPassword, { loading, error }] = useMutation(ForgetPasswordQuery);
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -141,46 +179,29 @@ const Login = () => {
   };
   const [info, setInfo] = useState({
     email: "",
-    password: "",
   });
   const validate = () => {
     if (!validateEmail(info.email)) {
-      toast.error("Please Enter Valid Email")
-      return
-    }
-
-    if (!info.password) {
-      toast.error("Please Enter Valid Password")
-      return
+      toast.error("Please Enter A Valid Email")
+        return
     }
     return true;
   };
 
-  const handleLogin = async () => {
+  const handleResetPassword = async () => {
     const isValid = validate();
     setLoading(true);
     if (isValid) {
       try {
-        const resp = await login({
+        const resp = await forgetPassword({
           variables: {
             email: info.email,
-            password: info.password,
           },
         });
-
-        const data = resp.data.login;
-        for (let key of Object.keys(data)) {
-          await localStorage.setItem(key, data[key]);
-        }
-
-
-        window.location.reload()
-        console.log({ data });
+        toast.success("Please Check your email to reset password")
       } catch (err) {
-        console.log("11weeeeee",error);
         if (error && error.message) {
           toast.error(error.message);
-
         }
       }
     }
@@ -188,12 +209,13 @@ const Login = () => {
   };
 
   return (
-    <Width>
+    <ParentContainer>
+ <Width>
       <Container>
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
+        <div style={{ display: "flex", }}>
           <Line />
           <div>
-            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>Email</p>
+            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" ,width:"100%"}}>Enter Email to Receive Password Reset Link</p>
             <input
               type="email"
               onChange={(e) => {
@@ -201,59 +223,20 @@ const Login = () => {
               }}
               placeholder="Enter Email"
               className="input"
-              style={{ height: "2rem", width: "10rem" }}
+              style={{ height: "2rem",width:"100%" }}
             />
           </div>
         </div>
 
-        <Margin style={{ display: "flex", alignItems: "flex-end" }}>
-          <Line />
-          <div>
-            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>
-              Password
-            </p>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                height: "3rem",
-                padding: "0 0 0 -2rem",
-              }}
-            >
-              {/* <div class="dropdown" style={{width:'2rem',margin:'0',padding:'0'}}>
-                <FaAngleDown style={{fontSize:'1.8rem',color:'grey',margin:'0.5rem 0 0 0',padding:'0'}} /> 
-                <div class="dropdown-content">
-                  <a href="#">+91 | IND</a>
-                  <a href="#">+22 | USA</a>
-                  <a href="#">+88 | AUS</a>
-                </div>
-              </div> */}
-
-              <input
-                type="password"
-                onChange={(e) => {
-                  setInfo({ ...info, password: e.target.value });
-                }}
-                placeholder="Enter Password"
-                className="input"
-                style={{
-                  height: "2rem",
-                  width: "10rem",
-                  margin: "0",
-                  padding: "0",
-                }}
-              />
-            </div>
-          </div>
-        </Margin>
+       
 
         <Button
           disabled={isLoading}
           onClick={() => {
-            handleLogin();
+            handleResetPassword();
           }}
         >
-          {isLoading ? "Logging in ..." : "LOGIN"}
+          {isLoading ? "Logging in ..." : "Send Reset Link"}
         </Button>
       </Container>
       <StyledLink
@@ -272,16 +255,18 @@ const Login = () => {
            Create Account
         </Link>
 
-        <Link fontSize={"25px"} href="/forgotPassword" style={{margin:'2rem 0 0 0',
+        <Link fontSize={"25px"} href="/login" style={{margin:'2rem 0 0 0',
           textDecoration: 'none', color: '#FFF', fontWeight: 'bold',
           marginLeft:5,
           backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
         }}>
-        Forgot Password?
+       Login
         </Link>
       </StyledLink>
     </Width>
+    </ParentContainer>
+   
   );
 };
 
-export default Login;
+export default ForgotPassword;

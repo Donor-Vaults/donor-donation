@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { CreateFundRaisers } from "../../apollo";
 import { uploadFile } from "../../utils/upload";
 import Fourm from "./Fourm";
@@ -11,16 +12,17 @@ import FourmPage4 from "./FourmPage4";
 import FourmPage5 from "./FourmPage5";
 import FourmPage6 from "./FourmPage6";
 import FourmPage7 from "./FourmPage7";
+import NotVerified from "./NotVerified";
 
 const CreateCampaign = () => {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [createCampaign, { loading, error }] = useMutation(CreateFundRaisers);
-
+  const user = useSelector(state=>state.user.user)
   useEffect(() => {
-    console.log({ data });
-  }, [data]);
+    console.log("useEffect",user);
+  }, [user]);
 
   const handleSubmitForm = async (payload) => {
     console.log({ payload });
@@ -56,8 +58,14 @@ const CreateCampaign = () => {
     }
     setLoading(false);
   };
+
+  if (user.kyc_status !=="APPROVED") {
+    return  <NotVerified/>
+  }
   return (
     <>
+      
+     
       <Fourm
         hide={index != 0}
         onNext={(_data) => {

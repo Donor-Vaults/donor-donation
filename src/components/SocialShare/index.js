@@ -87,11 +87,7 @@ export const SocialShare = ({link}) => {
         <FacebookIcon size={32} round />
       </FacebookShareButton>
 
-      <div>
-        <FacebookShareCount url={shareUrl} className="Demo__some-network__share-count">
-          {count => count}
-        </FacebookShareCount>
-      </div>
+      
     </div>
 
   

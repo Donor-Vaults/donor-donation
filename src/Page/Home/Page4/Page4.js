@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import theme from 'styled-theming';
@@ -10,11 +10,12 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from 'react-alice-carousel';
 import { TiArrowLeftOutline, TiArrowRightOutline } from 'react-icons/ti'
 import { useSelector } from 'react-redux';
+import CATEGORIES from '../../../config/categories';
 
 export const backgroundColor = theme("theme", {
-    light: "#000000",
-    dark: "#E5E5E5",
-  });
+  light: "#000000",
+  dark: "#E5E5E5",
+});
 
 const Width = styled.div`
       width: 1300px;
@@ -156,17 +157,17 @@ const RightArrow = styled(TiArrowRightOutline)`
       
 `
 
-const resposive =  {
-  0:{
+const resposive = {
+  0: {
     items: 1,
   },
   650: {
-      items: 2,
+    items: 2,
   },
-  1335:{
-      items: 3,
+  1335: {
+    items: 3,
   },
- 
+
 }
 
 const HeadingContainer = styled.div`
@@ -202,7 +203,7 @@ background-color: rgba(249, 232, 202, 1);
 background-size: 100% 100%;
 background-repeat: no-repeat;
 flex-direction: column;
-padding: ${props=>props.big ? '6rem 0 10rem 0' : '2rem 0'};
+padding: ${props => props.big ? '6rem 0 10rem 0' : '2rem 0'};
 
 @media only screen and (max-width: 998px) {
     min-height: 100vh;
@@ -214,37 +215,52 @@ padding: ${props=>props.big ? '6rem 0 10rem 0' : '2rem 0'};
 `;
 
 const Page4 = (props) => {
-  const fundraisers = useSelector((state) => state.fundraisers.data);
+  const fundraisersData = useSelector((state) => state.fundraisers.data);
 
- 
 
-    return (
-        <Sec id="fund">
-          <Width>
-            <Heading>
-              You can search by category or donate directly to a fundraiser of your option
-            </Heading>
-            
-          </Width>
+  const [selectedCategory, setSelectedCategory] = useState("")
 
-          <Background>
+  const fundraisers = selectedCategory ? fundraisersData.filter((item) => {
+    return item.category.toLowerCase() === selectedCategory.toLowerCase()
+  }) : fundraisersData;
 
-            <Category>
-              <div style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center'}}>
-              
-                <HeadingContainer>
-                  <Head>
-                    CATEGORY
-                  </Head> 
-                  <Line /> 
-                
-                </HeadingContainer>
+  return (
+    <Sec id="fund">
+      <Width>
+        <Heading>
+          You can search by category or donate directly to a fundraiser of your option
+        </Heading>
 
-              </div>
+      </Width>
 
-              <T style={{color:'#02A95C',margin:'1rem 0 0 1rem'}}>All Categories</T>
+      <Background>
 
-              <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Animals</T>
+        <Category>
+          <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+            <HeadingContainer>
+              <Head>
+                Categories
+              </Head>
+              <Line />
+
+            </HeadingContainer>
+
+          </div>
+
+          <div className='hoverable' onClick={() => {
+            setSelectedCategory("")
+          }}>
+            <T style={{ color: !selectedCategory ? '#02A95C' : "#fff", margin: '1rem 0 0 1rem' }}>All Categories</T>
+          </div>
+          {CATEGORIES.map((item) => {
+            return <div className='hoverable' onClick={() => {
+              setSelectedCategory(item)
+            }}>
+              <T style={{ color: selectedCategory.toLowerCase() === item.toLowerCase() ? '#02A95C' : "#fff", margin: '1rem 0 0 1rem' }}>{item}</T>
+            </div>
+          })}
+          {/* <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Animals</T>
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Business</T>
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Community</T>
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Education</T>
@@ -257,28 +273,28 @@ const Page4 = (props) => {
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Sports</T>
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Animals</T>
               <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Travel</T>
-              <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Animals</T>
-                        
-            </Category>
+              <T style={{color:'#FFF',margin:'0 0 0 1rem'}}>Animals</T> */}
 
-            <StyleCard>
+        </Category>
 
-          
+        <StyleCard>
 
-                {fundraisers?.map(e => (
 
-                  <FundraiserCard data={ e} />
 
-                ))}
+          {fundraisers?.map(e => (
 
-            
+            <FundraiserCard data={e} />
 
-            </StyleCard>
+          ))}
 
-          </Background>
 
-        </Sec>
-    )
+
+        </StyleCard>
+
+      </Background>
+
+    </Sec>
+  )
 }
 
 export default Page4

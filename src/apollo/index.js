@@ -50,6 +50,16 @@ mutation login(
   }
 }`);
 
+
+export const ForgetPasswordQuery = gql(`
+mutation resetPasswordByLink($email:String!){
+  passwordresetRequestByLink(data:{email:$email}){
+    accessToken
+    link
+  }
+}`);
+
+
 export const CreateFundRaisers = gql(`
 mutation CreateCampaign($benificiary:String!,$category:String!,
   $featuredImage:String!,$firstName:String!,$fundraiserName:String!,$fundraiserDescription:String!,
@@ -81,13 +91,14 @@ mutation CreateCampaign($benificiary:String!,$category:String!,
 // # fundraisers(where:{fundraisers_status:{equals:APPROVED}}){
 
 export const ChangePassword = gql(`
-  mutation UpdatePassoword($newPassword:String,$id:String){
-    updateUser(where:{id:$id},
-      data:{password:{set:$newPassword}}){
-      id
-      
+ mutation resetPassword($newPassword:String!){
+  passwordresetRequest(data:{newPassword:$newPassword}){
+    accessToken
+    user{
+      email
     }
   }
+}
 `)
 
   export const GetAllFundraisers = gql(`

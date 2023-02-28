@@ -55,7 +55,6 @@ const Gradient = styled.div`
   }
 `;
 const RegisterationHome = () => {
-  let PathName = useSelector((state) => state.path);
 
   // console.log(PathName)
 

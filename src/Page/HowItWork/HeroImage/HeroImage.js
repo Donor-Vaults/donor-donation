@@ -106,7 +106,7 @@ const HeroImage = () => {
               
             <Ht>Helping each other is human nature</Ht>
 
-            <Button style={{margin:'5rem 0 0 0',height:'4.5rem',width:'15rem',fontSize:'1.5rem'}}>Fundraise Now</Button>
+            {/* <Button style={{margin:'5rem 0 0 0',height:'4.5rem',width:'15rem',fontSize:'1.5rem'}}>Fundraise Now</Button> */}
                 
           </Width>
         

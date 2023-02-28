@@ -54,19 +54,17 @@ const Card = (props) => {
             </Upper>
             <Lower>
                 
-                <H style={{color:'#FFFFFF',fontSize:'1.5rem',margin:'1.5rem 0',textAlign:'center'}}>
+                <H style={{color:'#FFFFFF',fontSize:'1.5rem',textAlign:'center'}}>
                             {props.name ? props.name : ""}                          
                 </H>
-                <Button style={{margin:'0 0 2rem 0',boxShadow:'none',color:'#000',
+                {/* <Button style={{margin:'0 0 2rem 0',boxShadow:'none',color:'#000',
                  background: 'rgba(249,232,202,1)',border:'2px solid #000'
                  ,fontSize:'1.2rem',padding:'-0.4rem 1rem'}}>
                     {props.button ? props.button : 'Donate Now'} 
 
-                    {/* <svg style={{margin:'0 0 0 1rem'}} width="28" height="11" viewBox="0 0 28 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M0.990234 4.78062C0.592929 4.78062 0.27085 5.1027 0.27085 5.5C0.27085 5.8973 0.592929 6.21938 0.990234 6.21938V4.78062ZM27.523 6.00868C27.804 5.72774 27.804 5.27226 27.523 4.99132L22.9449 0.413186C22.664 0.132249 22.2085 0.132249 21.9275 0.413186C21.6466 0.694123 21.6466 1.14961 21.9275 1.43055L25.997 5.5L21.9275 9.56945C21.6466 9.85039 21.6466 10.3059 21.9275 10.5868C22.2085 10.8678 22.664 10.8678 22.9449 10.5868L27.523 6.00868ZM0.990234 6.21938H27.0143V4.78062H0.990234V6.21938Z" fill="white"/>
-                    </svg> */}
+                   
 
-                </Button>
+                </Button> */}
             </Lower>
             
         </Box>

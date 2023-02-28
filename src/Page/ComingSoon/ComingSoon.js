@@ -46,7 +46,7 @@ const ComingSoon = () => {
     return (
         <Sec>
           <Width>
-            <H style={{color:'green'}} >COMMING SOON</H>
+            <H style={{color:'green'}} >COMING SOON</H>
           </Width>
         </Sec>
     )

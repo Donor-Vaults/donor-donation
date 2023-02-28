@@ -69,7 +69,8 @@ const ProfileForm = () => {
 
   useEffect(() => {
     if (user) {
-      setData({...user})
+      setData({ ...user })
+      console.log("mobile,",user.mobile_number)
     }
   },[user])
   return (
@@ -169,7 +170,7 @@ const ProfileForm = () => {
             Phone Number
           </T>
           <Input
-            type="Number"
+            type="tel"
             placeholder="9001-111"
             className="input1"
             value={data.mobile_number}

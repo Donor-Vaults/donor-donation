@@ -193,35 +193,19 @@ const Home = () => {
   const wallet = useWallet();
 
   const renderButton = () => {
-    return wallet.account ? (
-      <Button
-        type="button"
-        style={{ padding: "0 1rem", minWidth: "11rem" }}
-        onClick={() => {
-          wallet.connect();
-        }}
-        to="donate"
-        spy={true}
-        smooth={true}
-        offset={150}
-      >
-        {wallet.account.slice(0, 10)}...
-      </Button>
-    ) : (
-      <Button
-        type="button"
-        style={{ padding: "0 1rem", minWidth: "11rem" }}
-        onClick={() => {
-          wallet.connect();
-        }}
-        to="donate"
-        spy={true}
-        smooth={true}
-        offset={150}
-      >
-        Donate
-      </Button>
-    );
+    return    <Button
+      type="button"
+      onClick={() => {
+        window.location.href="/allfundraiser"
+      }}
+    style={{ padding: "0 1rem",  }}
+  
+    spy={true}
+    smooth={true}
+    offset={150}
+  >
+    Explore
+  </Button>
   };
 
   const [showButton, setShowButton] = useState(false);
@@ -271,7 +255,9 @@ const Home = () => {
           <ButtonContainer>
             {renderButton()}
 
-            <ButtonR to="fund" spy={true} smooth={true} offset={-80}>
+            <ButtonR onClick={() => {
+              window.location.href="/start"
+            }} spy={true} smooth={true} offset={-80}>
               Start a Fundraiser
             </ButtonR>
           </ButtonContainer>

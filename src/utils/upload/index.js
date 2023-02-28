@@ -25,26 +25,41 @@ function renameFile(originalFile, newName) {
 export const uploadFile = async (file) => {
 
 
-    const extention = file.name.substr(file.name.lastIndexOf('.') + 1);
+    // const extention = file.name.substr(file.name.lastIndexOf('.') + 1);
 
-    const config = {
-        bucketName: "donor-media-storage",
-        accessKeyId: 'AKIAQTCT43YXE5ACEJWA',
-        secretAccessKey: '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',
-        region: 'us-east-1',
-        s3Url:"http://donor-images-storage.s3-website-us-east-1.amazonaws.com"
+    // const config = {
+    //     bucketName: process.env.REACT_APP_BUCKET_NAME,
+    //     accessKeyId:process.env.REACT_APP_S3_ACCESS_KEY,
+    //     secretAccessKey:process.env.REACT_APP_S3_SECRET_KEY,
+    //     region: 'us-east-1',
+    //     s3Url:`http://${process.env.REACT_APP_BUCKET_NAME}.s3-website-us-east-1.amazonaws.com`
      
-    }
+    // }
     
-    console.log("11dd[a[a[apapa1111111")
+    // console.log("11dd[a[a[apapa1111111",config)
     
 
     
  
-    const fileName = `${generateGuid()}.${extention}`
-    const renamedFile = renameFile(file,fileName)
-    const res = await S3FileUpload.uploadFile(renamedFile, config);
-    console.log(res.location)
+    // const fileName = `${generateGuid()}.${extention}`
+    // const renamedFile = renameFile(file,fileName)
+    // const res = await S3FileUpload.uploadFile(renamedFile, config);
+    // console.log(res.location)
 
-    return res.location
+    var formdata = new FormData();
+formdata.append("file", file,file.name);
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+const resp = await fetch(`${config.UPLOAD_URL}/documents/upload`, requestOptions)
+ 
+    const response = await resp.json()
+    console.log({response})
+
+    return response.url
+    
 }

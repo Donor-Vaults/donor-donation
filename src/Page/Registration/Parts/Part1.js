@@ -10,14 +10,46 @@ import logo from "../../../components/Navbar/logo.svg";
 import toast from "react-hot-toast";
 import CountryDropdown from 'country-dropdown-with-flags-for-react'; 
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import {isValidPhoneNumber} from 'react-phone-number-input/input'
 import '../../1Registration/Wwe.css'
 import CountryList from 'country-list-with-dial-code-and-flag'
-import { countries } from "../../../config/countries";
+import countries from "../../../config/countries";
+import 'react-select-search/style.css'
+import SelectSearch from 'react-select-search';
 
 
 import { ReactCountryDropdown } from 'react-country-dropdown'
 import 'react-country-dropdown/dist/index.css'
+
+
+
+
+function OneCountryItem(props, option, snapshot, className) {
+  const imgStyle = {
+      borderRadius: '50%',
+      verticalAlign: 'middle',
+      marginRight: 10,
+  };
+
+  console.log({props, option, snapshot, className})
+
+  return (
+    <button {...props} onClick={() => {
+      props.onChange(option)
+      }} className={className} type="button">
+          <span>
+              <img
+                  alt=""
+                  style={imgStyle}
+                  width="28"
+                  height="28"
+                  src={`https://flagcdn.com/40x30/${option.code.toLowerCase()}.png`}
+              />
+              <span>{option.name}</span>
+          </span>
+      </button>
+  );
+}
 
 const T = styled.p`
     color: #000;
@@ -190,35 +222,13 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
     // lastName: "",
     name:"",
     dob: "",
-    country: "",
+    country: "United States",
     mobile: "",
     email: "",
     password: "",
   });
 
-  const getCountryCode = (name)=>{
-    const code = countries.find((item) => {
-       return (
-        item.name === name
-       ) 
-     })
-   return code.code
-  }
-
-  const handleSelect = (co) => {
-    console.log(co,'kk')
-    /* returns the details on selected country as an object
-    	{
-          name: "United States of America", 
-          code: "US", 
-          capital: "Washington, D.C.", 
-          region: "Americas", 
-          latlng: [38, -97]
-        }
-    */
-      setInfo({ ...info, country: co.target.value });
-  }
-
+  
   const [ firstName, setFirstName ] = useState('');
   const [ middleName, setMiddleName ] = useState('');
   const [ lastName, setLastName ] = useState('');
@@ -242,7 +252,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
       return false;
     }
 
-    if (!isValid(/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/, info.mobile)) {
+    if (!isValidPhoneNumber(info.mobile)) {
       toast.error("Enter Valid Mobile");
       return false;
     }
@@ -260,7 +270,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
         info.password
       )
     ) {
-      toast.error("Enter Valid Password");
+      toast.error(" password must contain at least eight characters, at least one number and both lower and uppercase letters and special characters");
       return false;
     }
 
@@ -290,6 +300,18 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
   }, [firstName,middleName,lastName]);
 
 
+
+  const getSelectedCountryCode = () => {
+    const countryName =info.country.includes("(")? info.country.substring(0, info.country.indexOf(" (")).trim():info.country;
+    const country = countries.filter((item) => {
+     return item.name.toLowerCase() === countryName.toLowerCase()
+    })
+
+    console.log("getSelectedCountryCode",country)
+    if (country.length>0) {
+      return country[0].dial_code
+    }
+  }
 
   return (
     <Box
@@ -367,7 +389,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
               </div>
 
               <Input
-                placeholder="Enter Middle Name"
+                placeholder="Enter Middle Name (Optional)"
                 //value={"21 July 2022. 1200 UTC+1"}
                 className="input"
                 value={info.middleName}
@@ -498,35 +520,16 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 </svg>
               </div>
 
-              {/* <Input
-                type="Text"
-                placeholder="Enter Country"
-                className="input"
-                value={info.country}
-                onChange={(r) => {
-                  setInfo({ ...info, country: r.target.value });
-                }}
-                style={{
-                  height: "3.75rem",
-                  // border: "1px solid rgba(0,0,0,0.2)",
-                  borderRadius: "0.75rem",
-
-                  margin: "2rem 0 0 0",
-                  margin: "0 0 0 1rem",
-                }}
-              /> */}
+              
 
               <div style={{margin:'0 0 0 1rem'}}>
-                <CountryDropdown  id="UNIQUE_ID" className='countrySelect' preferredCountries={['in', 'us']}  value=""  
-                //  onChange={(r) => {
-                //     setInfo({ ...info, country: r.target.value });
-                //   }}
-                  handleChange={e => {
+                <CountryDropdown  id="UNIQUE_ID" className='countrySelect' 
+                
+                handleChange={e => {
                     setInfo({ ...info, country: e.target.value  });
-                    console.log(info.country)
                   }}
                   />
-                  {/* <ReactCountryDropdown onSelect={handleSelect} countryCode='IN' /> */}
+               
               </div>
 
             </div>
@@ -545,53 +548,75 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
                   Mobile Number
                 </H>
-                {/* <svg
-                width="28"
-                height="34"
-                viewBox="0 0 28 34"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14 0C21.7195 0 28 6.50185 28 14.4945C28 24.3196 17.0444 34 14 34C10.9556 34 0 24.3196 0 14.4945C0 6.50185 6.28049 0 14 0ZM14 2.61538C7.68388 2.61538 2.54545 7.94554 2.54545 14.4945C2.54545 22.8271 12.0892 30.9452 14 31.3776C15.9108 30.9435 25.4545 22.8253 25.4545 14.4945C25.4545 7.94554 20.3161 2.61538 14 2.61538ZM14.0017 8.71795C17.0427 8.71795 19.5168 11.2601 19.5168 14.3864C19.5168 17.5109 17.0427 20.0513 14.0017 20.0513C10.9607 20.0513 8.48655 17.5109 8.48655 14.3864C8.48655 11.2601 10.9607 8.71795 14.0017 8.71795ZM14.0017 11.3333C12.3641 11.3333 11.032 12.7021 11.032 14.3864C11.032 16.0689 12.3641 17.4359 14.0017 17.4359C15.6393 17.4359 16.9714 16.0689 16.9714 14.3864C16.9714 12.7021 15.6393 11.3333 14.0017 11.3333Z"
-                  fill="#3E4958"
-                />
-              </svg> */}
+               
               </div>
 
-              {/* <Input
-                type="Text"
-                placeholder="Enter Mobile Number"
-                //value={"21 July 2022. 1200 UTC+1"}
-                className="input"
-                value={info.mobile}
-                onChange={(r) => {
-                  setInfo({ ...info, mobile: r.target.value });
-                }}
-                style={{
-                  height: "3.75rem",
-                  // border: "1px solid rgba(0,0,0,0.2)",
-                  borderRadius: "0.75rem",
-                  margin: "2rem 0 0 0",
-                  margin: "0 0 0 1rem",
-                }}
-              /> */}
               <div style={{margin:'0 0 0 1rem'}}>
                 
-               <PhoneInput
+               {/* <PhoneInput
                   smartCaret
                       international
                      // disabled
                       defaultCountry="IN"
                       // country="US"
                       onChange={(r) => {
+                        console.log({r })
                         setInfo({ ...info, mobile : r });
-                        console.log(info.mobile)
                        }}
                       className="countrySelect"
-                      />
+                      /> */}
+              
+              <div style={{
+                display: "flex",
+                flexWrap:"no-wrap"
+              }}>
+                
+              {info.country?   <Input
+                type="text"
+                disabled
+                //value={"21 July 2022. 1200 UTC+1"}
+                className="input"
+                value={getSelectedCountryCode()}
+                
+                  style={{
+                  // width:"1.4rem",
+                    width:"15%",
+                    height: "3.75rem",
+                    // background: "#80808059",
+                    
+                    padding: 2,
+                    margin:2,
+                  borderRadius: "0.2rem",
+                  // margin: "0 1rem",
+                 // background:'red',
+                  // display: 'flex',
+                  // justifyContent: 'space-around',
+                }}
+              /> : null}
+              
+              <Input
+                type="phone"
+                
+                  placeholder="Enter Phone Without Country Code"
+                className="input"
+                
+                  onChange={(t) => {
+                    const mobile = getSelectedCountryCode()+t.target.value
+                    setInfo({ ...info, mobile });
+
+                  }}
+                style={{
+                  height: "3.75rem",
+                  width:"100%",
+                  borderRadius: "0.75rem",
+                  margin: "0 1rem",
+                 // background:'red',
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                }}
+              />
+                   
+</div>
               </div>
             </div>
 
@@ -629,6 +654,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 value={info.email}
                 onChange={(r) => {
                   setInfo({ ...info, email: r.target.value });
+
                 }}
                 type="Text"
                 placeholder="Enter Email"
@@ -658,18 +684,7 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 <H style={{ margin: "0 0.5rem 0 1rem", color: " #3E4958" }}>
                   Password
                 </H>
-                {/* <svg
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2.33366 19.8334H25.667V22.1667H2.33366V19.8334ZM3.67533 15.1084L4.66699 13.3817L5.65866 15.1084L7.17533 14.2334L6.18366 12.5067H8.16699V10.7567H6.18366L7.17533 9.04175L5.65866 8.16675L4.66699 9.88175L3.67533 8.16675L2.15866 9.04175L3.15033 10.7567H1.16699V12.5067H3.15033L2.15866 14.2334L3.67533 15.1084ZM11.492 14.2334L13.0087 15.1084L14.0003 13.3817L14.992 15.1084L16.5087 14.2334L15.517 12.5067H17.5003V10.7567H15.517L16.5087 9.04175L14.992 8.16675L14.0003 9.88175L13.0087 8.16675L11.492 9.04175L12.4837 10.7567H10.5003V12.5067H12.4837L11.492 14.2334ZM26.8337 10.7567H24.8503L25.842 9.04175L24.3253 8.16675L23.3337 9.88175L22.342 8.16675L20.8253 9.04175L21.817 10.7567H19.8337V12.5067H21.817L20.8253 14.2334L22.342 15.1084L23.3337 13.3817L24.3253 15.1084L25.842 14.2334L24.8503 12.5067H26.8337V10.7567Z"
-                  fill="#3E4958"
-                />
-              </svg> */}
+                
               </div>
 
               <Input

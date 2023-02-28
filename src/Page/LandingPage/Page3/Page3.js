@@ -114,7 +114,7 @@ const Page3 = (props) => {
 
             <Width>
             <Center>
-              <H>Anyone from anywhere can ask help</H>
+              <H> Anyone from anywhere can ask help</H>
               <T>Any sincere and committed individual or group or institution from anywhere in the world can fundraise for self or for a cause. </T>
               <Button
                 to="fund" spy={true} smooth={true} offset={-80}

@@ -103,11 +103,11 @@ const Page2 = () => {
                 we ensure each cent is utilised for the purpose, and all on a
                 blockchain platform managed by the community.
               </T>
-              <Button 
+              {/* <Button 
                 to="donate" spy={true} smooth={true} offset={150}
                 style={{width:'13rem'}}>
                 Donate now
-              </Button>
+              </Button> */}
             </Center>
 
             

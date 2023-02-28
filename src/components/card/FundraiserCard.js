@@ -167,7 +167,7 @@ const FundraiserCard = (props) => {
                 Donate
               </Link>
             </Button>
-            <SocialShare link={ ""} />
+            {/* <SocialShare link={""} /> */}
           </div>
         </Lower>
       </Link>

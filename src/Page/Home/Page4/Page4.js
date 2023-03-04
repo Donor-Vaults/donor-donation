@@ -11,6 +11,7 @@ import AliceCarousel from 'react-alice-carousel';
 import { TiArrowLeftOutline, TiArrowRightOutline } from 'react-icons/ti'
 import { useSelector } from 'react-redux';
 import CATEGORIES from '../../../config/categories';
+import { Element } from 'react-scroll'
 
 export const backgroundColor = theme("theme", {
   light: "#000000",
@@ -225,7 +226,8 @@ const Page4 = (props) => {
   }) : fundraisersData;
 
   return (
-    <Sec id="allfundraiser">
+    <Element id='allfundraiser' name='allfundraiser'>
+    <Sec id="allfundraiserCategory">
       <Width>
         <Heading>
           You can search by category or donate directly to a fundraiser of your option
@@ -294,6 +296,7 @@ const Page4 = (props) => {
       </Background>
 
     </Sec>
+    </Element>
   )
 }
 

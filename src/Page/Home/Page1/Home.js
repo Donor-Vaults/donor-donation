@@ -9,7 +9,6 @@ import { BsBoxArrowUp } from 'react-icons/bs';
 import { Link, animateScroll as scroll } from "react-scroll";
 import { Button } from '../../../components/Navbar/Navbar';
 import { useWallet } from 'use-wallet'
-import { Element } from 'react-scroll'
 
 // const iconColor = theme("theme", {
 //     light: "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
@@ -258,7 +257,7 @@ const Home = () => {
 
 
     return (
-      <Element id='allfundraiser' name='allfundraiser'>
+      
         <HomePage>
 
           {/* <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',backgroundColor:'#98C87D'}}> */}
@@ -297,7 +296,7 @@ const Home = () => {
             
             
         </HomePage>
-      </Element>
+     
     )
 }
 

@@ -175,7 +175,7 @@ const Login = () => {
               }}
               placeholder="Enter Email"
               className="input"
-              style={{ height: "2rem", width: "10rem" }}
+              style={{ height: "2rem", width: "100%"}}
             />
           </div>
         </div>

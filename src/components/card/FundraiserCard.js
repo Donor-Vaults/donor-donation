@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { SocialShare } from "../SocialShare";
+import './Style.css'
 
 export const backgroundColor = theme("theme", {
   light: "#000000",
@@ -23,13 +24,15 @@ export const bColor = theme("theme", {
 
 const Box = styled(Tilt)`
   width: 25rem;
-  min-height: 54rem;
+  min-height: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 2rem auto 0 auto;
+  margin: 2rem auto auto auto;
   justify-self: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,

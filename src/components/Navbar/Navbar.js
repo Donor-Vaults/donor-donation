@@ -207,7 +207,7 @@ const changeBackground = () => {
                   smooth={true} offset={-80}>Vault
                 </Link3>
               
-                <Link2 to="/allfundraiser" spy={true} smooth={true} offset={-80}>
+                <Link2 to="/allfundraiser#allfundraiserCategory" spy={true} smooth={true} offset={-80}>
                   Donate
                 </Link2>   
 
@@ -245,9 +245,11 @@ const changeBackground = () => {
             </Mobile>
           </div>
 
+          <Profile/>
+
         </RightContainer>
 
-        <Profile/>
+        
 
         </nav>   
     )

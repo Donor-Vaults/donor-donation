@@ -1,0 +1,7 @@
+.alice-carousel__stage {
+    display: flex
+  }
+  .alice-carousel__stage-item {
+    flex: 1 0 auto;
+    height: auto;
+  }

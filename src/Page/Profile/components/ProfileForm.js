@@ -2,7 +2,6 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { Button } from "../../../components/Navbar/Navbar";
 
 const Container = styled.div`
   margin: 4rem 2rem 2rem 2rem;
@@ -58,7 +57,25 @@ const Flex = styled.div`
   }
 `;
 
+
 const ProfileForm = () => {
+
+  const [saveButtonShow, setSaveButtonShow] = useState(false);
+
+  const Button = styled.button`
+    background-color: ${saveButtonShow ? 'rgba(2, 169, 92, 1)' : 'grey' };
+    border: none;
+    border-radius: 2rem;
+    padding: 0 1.5rem;
+    color: #FFF;
+    font-size: 1.2rem;
+    height: 3.5rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+`
+
   const user = useSelector((state) => state.user.user);
   const [data, setData] = useState({
     name: "",
@@ -67,7 +84,7 @@ const ProfileForm = () => {
     date_of_birth: "",
     country: "",
   });
-  const [saveButtonShow, setSaveButtonShow] = useState(false);
+ 
 
   useEffect(() => {
     if (user) {
@@ -75,6 +92,8 @@ const ProfileForm = () => {
       console.log("mobile,",user.mobile_number)
     }
   },[user])
+
+
   return (
     <Container>
       <div>
@@ -224,7 +243,7 @@ const ProfileForm = () => {
 
       <Flex>
 
-        <Button
+        {/* <Button
           onClick={async() => {
             await localStorage.clear()
             window.location.href = "/"
@@ -235,17 +254,18 @@ const ProfileForm = () => {
           }}
         >
           Logout
-        </Button>
+        </Button> */}
 
-        { saveButtonShow ?
+        
           <Button
           style={{
             width:"48%"
           }}
+          disabled
           >
             Save
-          </Button> : null
-        }
+          </Button> 
+      
         
 
       </Flex>

@@ -353,6 +353,9 @@ const DonationPanel = ({ fundraiser }) => {
          </div> 
         : null}
 
+          <a target="_blank" href="www.google.com">
+            You know this fundraiser is a fraud? Report.
+          </a>
 
       </Box1>
 

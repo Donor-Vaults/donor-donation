@@ -130,7 +130,7 @@ const App = () => {
           <Route
             path="/login"
             element={
-              <InverseProtected>
+              <InverseProtected >
                 <Login />
               </InverseProtected>
             }

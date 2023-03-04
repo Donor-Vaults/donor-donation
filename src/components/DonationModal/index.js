@@ -1,7 +1,7 @@
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import Button from "@mui/material/Button";
+import { Button } from "../Navbar/Navbar";
 import { Box } from "@mui/system";
 import { useWallet } from "use-wallet";
 import Web3 from "web3";
@@ -143,7 +143,7 @@ export default function DonationModal({ fundraiser, open, setOpen }) {
           alignSelf: "center",
         }}
       >
-        {isLoading ? "Loading" : text}
+        {isLoading ? "Processing" : text}
       </Button>
     );
   };
@@ -157,7 +157,9 @@ export default function DonationModal({ fundraiser, open, setOpen }) {
         {isLoadingData ? (
           <CircularProgress />
         ) : (
-          <Box bgcolor={"#fff"} width="30%" padding={5} borderRadius={5}>
+          <Box bgcolor={"#fff"} width="30%" padding={5} borderRadius={5}
+            style={{boxShadow:'rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset'}}
+          >
             <h2 style={{ color: "black" }}>Donate</h2>
             <hr />
             <input
@@ -179,11 +181,12 @@ export default function DonationModal({ fundraiser, open, setOpen }) {
               }}
             />
             {wallet.account && (
-              <span style={{ color: "black", width: "100%" }}>
+              <div style={{ color: "black", width: "100%",marginTop:'1rem' }}>
                 Balance : {balance} USDT
-              </span>
+              </div>
             )}
             <br />
+            <div style={{margin:'1rem 0 0 0'}}>
             {renderButton()}
             <Button
               disabled={isLoading}
@@ -199,11 +202,13 @@ export default function DonationModal({ fundraiser, open, setOpen }) {
                 textAlign: "center",
                 alignItems: "center",
                 alignSelf: "center",
+                boxShadow:'rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset',
+
               }}
             >
               Cancel
             </Button>
-            ;
+            </div>
           </Box>
         )}
       </Backdrop>

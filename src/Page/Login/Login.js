@@ -13,11 +13,6 @@ import { useMutation } from "@apollo/client";
 import { toast } from "react-hot-toast";
 import { motion } from "framer-motion";
 
-export const backgroundColor = theme("theme", {
-  light: "#000000",
-  dark: "#E5E5E5",
-});
-
 const Container = styled.div`
   width: 1200px;
 
@@ -29,7 +24,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  margin: 0 0 3.5rem 0;
+  margin: 0 0 0 0;
 
   @media only screen and (max-width: 1300px) {
     width: 98%;
@@ -85,40 +80,19 @@ const Button = styled.button`
 `;
 
 const StyledLink = styled(motion.div)`
-
+//  background: red;
+  display: flex;
+ 
+  align-items: center;
+  justify-content: center;
+ 
+  margin: 2rem 0 0 0;
 `
 
-const Gradient = styled.div`
-  background: linear-gradient(
-    180deg,
-    rgba(2, 169, 92, 0.5) 0%,
-    rgba(34, 170, 48, 0.5) 100%
-  );
-  border-radius: 2rem;
-  padding: 3rem;
-
-  @media only screen and (max-width: 768px) {
-    margin: 2rem 0 3rem 0;
-    padding: 3rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
 const Width = styled.div`
-  width: 1300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+`
 
-  @media only screen and (max-width: 1400px) {
-    width: 95%;
-  }
-  @media only screen and (max-width: 1100px) {
-    flex-direction: column;
-  }
-`;
 const Margin = styled.div`
   @media only screen and (max-width: 1100px) {
     margin: 0 0 1rem 0;
@@ -265,17 +239,19 @@ const Login = () => {
           repeatType: "reverse",
         }}
       >
-        <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
+        <Link fontSize={"25px"} href="/register" style={{
           textDecoration:'none',color: '#FFF',fontWeight:'bold',
-          backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
+          backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem",
+          margin:'0 0.5rem 0 0'
         }}>
            Create Account
         </Link>
 
-        <Link fontSize={"25px"} href="/forgotPassword" style={{margin:'2rem 0 0 0',
+        <Link fontSize={"25px"} href="/forgotPassword" style={{
           textDecoration: 'none', color: '#FFF', fontWeight: 'bold',
           marginLeft:5,
-          backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
+          backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem",
+          margin:'0 0 0 0.5rem'
         }}>
         Forgot Password?
         </Link>

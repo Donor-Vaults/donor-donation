@@ -14,6 +14,8 @@ const Container = styled.div`
 
 const Input = styled.input`
   width: 25rem;
+  padding: 0 0 0 1rem;
+
   @media only screen and (max-width: 768px) {
     width: 80%;
   }
@@ -65,7 +67,7 @@ const ProfileForm = () => {
     date_of_birth: "",
     country: "",
   });
-
+  const [saveButtonShow, setSaveButtonShow] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -92,6 +94,7 @@ const ProfileForm = () => {
           value={data.name}
           onChange={(e) => {
             setData({ ...data, name: e.target.value });
+            setSaveButtonShow(true)
           }}
           style={{
             height: "4rem",
@@ -99,6 +102,7 @@ const ProfileForm = () => {
             borderRadius: "0.5rem",
             width: "80%",
             margin: "0.5rem 0 0 0",
+            padding:"0 0 0 1rem",
           }}
         />
       </div>
@@ -121,6 +125,7 @@ const ProfileForm = () => {
             value={data.email}
             onChange={(e) => {
               setData({ ...data, email: e.target.value });
+              setSaveButtonShow(true)
             }}
             style={{
               height: "4rem",
@@ -147,6 +152,7 @@ const ProfileForm = () => {
             value={moment(data.date_of_birth).format("DD-MMM-YYYY")}
             onChange={(e) => {
               setData({ ...data, date_of_birth: e.target.value });
+              setSaveButtonShow(true)
             }}
             style={{
               height: "4rem",
@@ -176,6 +182,7 @@ const ProfileForm = () => {
             value={data.mobile_number}
             onChange={(e) => {
               setData({ ...data, mobile_number: e.target.value });
+              setSaveButtonShow(true)
             }}
             style={{
               height: "4rem",
@@ -202,6 +209,7 @@ const ProfileForm = () => {
             value={data.country}
             onChange={(e) => {
               setData({ ...data, country: e.target.value });
+              setSaveButtonShow(true)
             }}
             style={{
               height: "4rem",
@@ -212,27 +220,36 @@ const ProfileForm = () => {
           />
         </Second>
 
-
-
-       
-        
       </Flex>
 
-      <Button
-        onClick={async() => {
-          await localStorage.clear()
-          window.location.href = "/"
-        }}
-        style={{
-        background: "Red",
-        width:"50%"
-        
-      }}>
+      <Flex>
+
+        <Button
+          onClick={async() => {
+            await localStorage.clear()
+            window.location.href = "/"
+          }}
+          style={{
+            background: "Red",
+            width:"48%"
+          }}
+        >
           Logout
         </Button>
 
+        { saveButtonShow ?
+          <Button
+          style={{
+            width:"48%"
+          }}
+          >
+            Save
+          </Button> : null
+        }
+        
 
-  
+      </Flex>
+
     </Container>
   );
 };

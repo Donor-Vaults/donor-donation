@@ -9,7 +9,7 @@ const HomeDefault = () => {
     <>
         <Home />
         <Page2 />
-        <Page4 />
+        <Page4 id="allfundraiser" />
         <Page7 />
     </>
   )

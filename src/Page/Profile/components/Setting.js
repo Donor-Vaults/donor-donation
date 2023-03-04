@@ -77,6 +77,7 @@ const Setting = () => {
             borderRadius: "0.5rem",
             width: "20rem",
             margin: "0.5rem 0 0 0",
+            padding: "0 0 0 1rem",
           }}
         />
         <Button 

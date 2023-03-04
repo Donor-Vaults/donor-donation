@@ -44,16 +44,28 @@ const Gradient = styled.div`
     rgba(34, 170, 48, 0.5) 100%
   );
   border-radius: 2rem;
-  padding: 3rem;
+  padding: 3.5rem 3rem 2rem 3rem;
 
-  @media only screen and (max-width: 768px) {
-    margin: 2rem 0 3rem 0;
-    padding: 3rem 1rem;
+    width: 100%;
     display: flex;
+    width: 1300px;
     align-items: center;
     justify-content: center;
-  }
+    @media only screen and (max-width: 1400px) {
+      width: 95%;
+    }
+    @media only screen and (max-width: 1100px) {
+      flex-direction: column;
+      
+    }
 `;
+
+const Width = styled.div`
+ 
+
+  
+`;
+
 const RegisterationHome = () => {
 
   // console.log(PathName)
@@ -61,12 +73,9 @@ const RegisterationHome = () => {
   return (
     <Sec>
       <Gradient>
-      <div style={{marginTop:30}}>
+    
         <Login />
-        </div>
-   
-        
-     
+
      </Gradient>
     </Sec>
   );

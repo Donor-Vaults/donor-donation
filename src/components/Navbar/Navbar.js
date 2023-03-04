@@ -5,16 +5,14 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Burger, Menu } from './components';
 import FocusLock from 'react-focus-lock';
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import theme from "styled-theming";
 import { Link as RouterLink } from 'react-router-dom'
 import { useWallet } from 'use-wallet'
 import Profile from './components/Profile/Profile';
+import scroll from 'react-scroll'
 
-export const backgroundColor = theme("theme", {
-  light: "#000000",
-  dark: "#E5E5E5",
-});  
+const ScrollLink = scroll.ScrollLink
 
 export const Link1 = styled(RouterLink)`
   display: flex;
@@ -204,12 +202,14 @@ const changeBackground = () => {
         
             <PC>
               <ul className={wallet.account ? "listWallet" : "list"}>
-              <Link3
-                
-                href="http://donoooor-valuts.s3-website-us-west-2.amazonaws.com/#/bsctest" spy={true}
-                smooth={true} offset={-80}>Vault</Link3>
+                <Link3
+                  href="http://donoooor-valuts.s3-website-us-west-2.amazonaws.com/#/bsctest" spy={true}
+                  smooth={true} offset={-80}>Vault
+                </Link3>
               
-              <Link2 to="/allfundraiser" spy={true} smooth={true} offset={-80}>Explore</Link2>  
+                <Link2 to="/allfundraiser" spy={true} smooth={true} offset={-80}>
+                  Donate
+                </Link2>   
 
                   {/* <Link2 to="/donate" spy={true} smooth={true} offset={-80}>Donate</Link2>  */}
                   <Link2 to="/start" spy={true} smooth={true} offset={-80}>Start a Fundraiser</Link2>  

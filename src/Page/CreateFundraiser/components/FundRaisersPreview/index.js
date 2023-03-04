@@ -191,7 +191,7 @@ const ApprovalPanel = ({ onConfirm, isLoading,onNext ,isDeployed}) => {
             text = "Continue";
             onClick = onNext;
           } else {
-            text = "Approve Fundraiser";
+            text = "Publish";
             onClick = onConfirm;
           }
         } else {

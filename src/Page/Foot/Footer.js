@@ -149,7 +149,7 @@ const Footer = () => {
             <Upper>
     
                 <Left>
-                    <T style={{color:' rgba(249,232,202,0.7)',fontSize:'1rem'}}>Copyright @ 2022. All rights reserved</T>
+                    <T style={{color:' rgba(249,232,202,0.7)',fontSize:'1rem'}}>Copyright @ 2023. All rights reserved</T>
                     <IconContainer>
                         <Link1 style={{margin:"0"}} to="home" spy={true} smooth={true} >
                             <img src='/yellow.png' alt="Logo" style={{width:"10rem",height:"9rem"}} />

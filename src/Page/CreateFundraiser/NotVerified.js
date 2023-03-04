@@ -13,9 +13,9 @@ const Sec = styled.section`
   min-height: 100vh;
   width: 100%;
   display: flex;
-  padding: 8rem 0 2rem 0;
+ // padding: 8rem 0 2rem 0;
   // flex-direction: column;
-  // align-items: center;
+  align-items: center;
   justify-content: center;
   background-color: rgba(249, 232, 202, 1);
   @media only screen and (max-width: 1100px) {

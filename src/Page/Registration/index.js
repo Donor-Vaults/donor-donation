@@ -126,7 +126,7 @@ const Registration = () => {
         selfie: data.selfie,
         password: data.password,
       }
-      console.log("handleRegistration1111",data,variables)
+      console.log("handleRegistration1111",variables)
 
 
       const resp = await register({

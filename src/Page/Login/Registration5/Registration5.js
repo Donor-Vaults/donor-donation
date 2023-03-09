@@ -236,7 +236,7 @@ const Register5 = () => {
                             <img src={logo} alt='' style={{width:'5rem',height:'4.5rem',margin:'0 0 2rem 0'}} />
                         </div>
                         <Ht>
-                            Capture your selfie
+                            Capture your selfie 
                         </Ht>
                         <T>
                         Please take a selfie using your device

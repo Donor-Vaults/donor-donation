@@ -272,6 +272,7 @@ const Part2 = ({ hide, onNext, onPrev }) => {
   const inputRef = useRef(null);
 
   const handleFinish = () => {
+    console.log("handleFinish",uploadUrl)
     onNext({ selfie: uploadUrl });
   };
 

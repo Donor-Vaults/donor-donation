@@ -153,6 +153,7 @@ kyc_status
 mobile_number
 name
 selfie
+user_role
 
 
 }

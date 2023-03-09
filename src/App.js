@@ -29,6 +29,7 @@ import { setGlobalFundraisers } from "./store/slices/fundraisersSlice";
 import FundraiserInfo from "./Page/FundraiserInfo";
 import ForgotPassword from "./Page/Login/ForgotPassword";
 import ResetPassword from "./Page/Login/ResetPassword";
+import VerifyEmail from "./Page/VerifyEmail";
 
 const App = () => {
   const userResp = useQuery(GetUser);
@@ -60,8 +61,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log({fundraiserResp,data:fundraiserResp.data})
-    
+    console.log({ fundraiserResp, data: fundraiserResp.data })
+
     if (fundraiserResp && fundraiserResp.data) {
       dispatch(setGlobalFundraisers(fundraiserResp.data.fundraisers));
     }
@@ -94,21 +95,26 @@ const App = () => {
           <Route path="/allfundraiser" element={<HomeDefault />} />
           <Route path="/fundraise" element={<RegisterationHome />} />
           <Route path="/forgotPassword" element={
-                          <InverseProtected>
+            <InverseProtected>
 
-            <ForgotPassword />
-              </InverseProtected>
+              <ForgotPassword />
+            </InverseProtected>
           } />
 
-<Route path="/resetpassword" element={
-              <InverseProtected>
+          <Route path="/resetpassword" element={
+            <InverseProtected>
 
-            <ResetPassword />
-              </InverseProtected>
+              <ResetPassword />
+            </InverseProtected>
           } />
 
-         
-           <Route
+          
+<Route path="/verifyemail" element={
+
+              <VerifyEmail />
+          } />
+
+          <Route
             path="/register"
             element={
               <InverseProtected>

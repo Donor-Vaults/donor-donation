@@ -10,7 +10,7 @@ import WideBox from "./components/WideBox";
 import i1 from "./components/you.svg";
 import i2 from "./components/charity.svg";
 import i3 from "./components/other.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sec = styled.section`
   min-height: 100vh;
@@ -170,9 +170,11 @@ const Details = styled.div`
 
 const FourmPage1 = ({ onNext, hide, onBack }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
+    firstName:user.name.substring(0, user.name.indexOf(' '))
+    ,
+    lastName: user.name.split(" ").splice(-1)[0],
     benificiary: "",
   });
   const validate = () => {
@@ -257,6 +259,7 @@ const FourmPage1 = ({ onNext, hide, onBack }) => {
             </div>
           </Back>
           <Details>
+           {user.user_role ==="USER"?null: <>
             <T style={{ margin: "0 0 0.5rem 0", fontSize: "1.6rem" }}>
               Your Name
             </T>
@@ -294,6 +297,7 @@ const FourmPage1 = ({ onNext, hide, onBack }) => {
               />
             </Flex>
 
+            </>}
             <div style={{ margin: "2rem 0 0 0" }}>
               <T style={{ margin: "0 0 0.5rem 0", fontSize: "1.6rem" }}>
                 Fundraiser beneficiary

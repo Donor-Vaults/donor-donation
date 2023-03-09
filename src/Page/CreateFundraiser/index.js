@@ -59,9 +59,13 @@ const CreateCampaign = () => {
     setLoading(false);
   };
 
-  if (user.kyc_status !=="APPROVED") {
-    return  <NotVerified/>
+  if (!user.isVerified) {
+    return  <NotVerified isEmail={true}/>
+
+  }else if (user.kyc_status !=="APPROVED") {
+    return  <NotVerified isEmail={false}/>
   }
+    
   return (
     <>
       

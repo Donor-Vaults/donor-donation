@@ -16,7 +16,7 @@ const items = [
     key: '1',
     label: (
       <div onClick={async() => {
-        await localStorage.clear()
+         localStorage.clear()
         window.location.href = "/"
       }}>
         

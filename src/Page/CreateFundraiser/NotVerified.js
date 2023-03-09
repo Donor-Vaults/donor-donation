@@ -161,7 +161,7 @@ const Details = styled.div`
   ${'' /* margin: 0 1rem 4rem 1rem; */}
 `;
 
-const NotVerified = ({ onNext, hide, onBack }) => {
+const NotVerified = ({ onNext, hide,isEmail, onBack }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({ category: "" });
 
@@ -188,8 +188,8 @@ const NotVerified = ({ onNext, hide, onBack }) => {
         <Details>
           <div style={{ margin: "3rem 0 0 0" }}>
             <T style={{ margin: "0 0 0.5rem 0", fontSize: "1.6rem" }}>
-              Your account is Pending for verification. <br/>
-              Please wait, while we are verfiying your account 
+              Your account is Pending for {isEmail?"Email ":"Identity "}verification. <br/>
+              {isEmail?"Please Check your inbox to verify the email":"Please wait, while we are verfiying your account "}
             </T>
       
           </div>

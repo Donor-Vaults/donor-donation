@@ -29,13 +29,8 @@ const Container = styled.div`
   @media only screen and (max-width: 1300px) {
     width: 98%;
   }
+  
   @media only screen and (max-width: 1100px) {
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(50%, 1fr));
-    place-items: center;
-  }
-  @media only screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
   }
@@ -45,7 +40,7 @@ const Line = styled.div`
   height: 3rem;
   width: 1px;
   background: rgba(0, 0, 0, 0.3);
-  margin: 0 2rem 0 0;
+  margin: 0 2rem 0.75rem 0;
   display: block;
   @media only screen and (max-width: 1100px) {
     display: none;
@@ -69,10 +64,6 @@ const Button = styled.button`
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
   @media only screen and (max-width: 1100px) {
-    height: 4rem;
-  }
-
-  @media only screen and (max-width: 768px) {
     height: 4rem;
     width: 100%;
     border-radius: 0 0 0.5rem 0.5rem;
@@ -101,6 +92,33 @@ const Margin = styled.div`
     margin: 1rem 0;
   }
 `;
+
+const InputEmail = styled.input`
+  height: 2rem;
+  width:30rem;
+
+
+  @media only screen and (max-width: 1250px) {
+    width: 20rem;
+  }
+
+  @media only screen and (max-width: 1150px) {
+    width: 100%;
+  }
+`
+const InputPass = styled.input`
+  height: 2rem;
+  width: 20rem;
+
+
+  @media only screen and (max-width: 1250px) {
+    width: 10rem;
+  }
+
+  @media only screen and (max-width: 1150px) {
+    width: 100%;
+  }
+`
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
@@ -164,21 +182,21 @@ const Login = () => {
   return (
     <Width>
       <Container>
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
-          <Line />
+        
+          <Margin style={{margin:'0 0 0 2rem'}}>
           <div>
             <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>Email</p>
-            <input
+            <InputEmail
               type="email"
               onChange={(e) => {
                 setInfo({ ...info, email: e.target.value });
               }}
               placeholder="Enter Email"
               className="input"
-              style={{ height: "2rem", width: "100%"}}
             />
           </div>
-        </div>
+          </Margin>
+        
 
         <Margin style={{ display: "flex", alignItems: "flex-end" }}>
           <Line />
@@ -194,16 +212,8 @@ const Login = () => {
                 padding: "0 0 0 -2rem",
               }}
             >
-              {/* <div class="dropdown" style={{width:'2rem',margin:'0',padding:'0'}}>
-                <FaAngleDown style={{fontSize:'1.8rem',color:'grey',margin:'0.5rem 0 0 0',padding:'0'}} /> 
-                <div class="dropdown-content">
-                  <a href="#">+91 | IND</a>
-                  <a href="#">+22 | USA</a>
-                  <a href="#">+88 | AUS</a>
-                </div>
-              </div> */}
-
-              <input
+              
+              <InputPass
                 type="password"
                 onChange={(e) => {
                   setInfo({ ...info, password: e.target.value });
@@ -212,7 +222,7 @@ const Login = () => {
                 className="input"
                 style={{
                   height: "2rem",
-                  width: "10rem",
+                  width: "20rem",
                   margin: "0",
                   padding: "0",
                 }}

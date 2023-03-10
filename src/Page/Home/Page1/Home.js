@@ -212,53 +212,51 @@ const Home = () => {
     const dispatch = useDispatch();
     const wallet = useWallet();
 
-    const renderButton = ()=>{
-      return(
-        (wallet.account) ?
-        <Button type='button'
-          style={{padding:'0 1rem',minWidth:'11rem'}}
-        onClick={() => {
-          wallet.connect();
-        }}
-        to="donate" spy={true} smooth={true} offset={150}
-        >
-          {wallet.account.slice(0, 10)}...
-        </Button>
-        :
-        <Button type='button'
-          style={{padding:'0 1rem',minWidth:'11rem'}}
-        onClick={() => {
-          wallet.connect();
-        }}
-        to="donate" spy={true} smooth={true} offset={150}
-        >
-          Donate
-        </Button>
-      )
+    // const renderButton = ()=>{
+    //   return(
+    //     (wallet.account) ?
+    //     <Button type='button'
+    //       style={{padding:'0 1rem',minWidth:'11rem'}}
+    //     onClick={() => {
+    //       wallet.connect();
+    //     }}
+    //     to="donate" spy={true} smooth={true} offset={150}
+    //     >
+    //       {wallet.account.slice(0, 10)}...
+    //     </Button>
+    //     :
+    //     <Button type='button'
+    //       style={{padding:'0 1rem',minWidth:'11rem'}}
+    //     onClick={() => {
+    //       wallet.connect();
+    //     }}
+    //     to="donate" spy={true} smooth={true} offset={150}
+    //     >
+    //       Donate
+    //     </Button>
+    //   )
     
-    }
+    // }
     
     const [ showButton, setShowButton ] = useState(false)
 
     const showButtonTop = () => {
-      // console.log(window.scrollY)
       if (window.scrollY >= 600) {
         setShowButton(true)
       } else {
         setShowButton(false)
       }
     }
-  
+
     useEffect(() => {
       showButtonTop()
-      // adding the event when scroll change background
       window.addEventListener("scroll", showButtonTop)
     })  
 
 
     return (
       
-        <HomePage>
+        <HomePage id="donor">
 
           {/* <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%',backgroundColor:'#98C87D'}}> */}
           <Width>
@@ -286,7 +284,7 @@ const Home = () => {
           
             <ShowButton
               type="button"
-              to="home" spy={true} smooth={true}
+              to="donor" spy={true} smooth={true}
             >
               <BsBoxArrowUp size="2rem"/>
             </ShowButton> :

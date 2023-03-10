@@ -30,6 +30,7 @@ import FundraiserInfo from "./Page/FundraiserInfo";
 import ForgotPassword from "./Page/Login/ForgotPassword";
 import ResetPassword from "./Page/Login/ResetPassword";
 import VerifyEmail from "./Page/VerifyEmail";
+import IsModal from "./Page/CreateFundraiser/components/FundRaisersPreview/Modal";
 
 const App = () => {
   const userResp = useQuery(GetUser);
@@ -90,6 +91,7 @@ const App = () => {
     <BrowserRouter>
       <>
         <Navbar />
+        {/* <IsModal /> */}
         <Routes>
           <Route path="/" element={<LadingPage />} />
           <Route path="/allfundraiser" element={<HomeDefault />} />

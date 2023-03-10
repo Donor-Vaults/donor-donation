@@ -8,11 +8,6 @@ import { useSelector } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import { useWallet } from 'use-wallet';
 
-export const backgroundColor = theme("theme", {
-    light: "#000000",
-    dark: "#E5E5E5",
-  });  
-
 const Sec = styled.section`
     min-height: 100vh;
     width: 100%;
@@ -35,37 +30,6 @@ const Sec = styled.section`
       }
 `;
 
-
-const T = styled.p`
-    color: #000;
-    font-weight: normal;
-    font-size: 1.8rem;
-    margin: 1rem 0 -0.5rem 2rem; 
-    // margin-bottom: 2rem;
-    // text-align: left;
-    //  font-weight: lighter;
-    //  letter-spacing: 0.05rem;
-    //  line-height: 1.8;
-    @media only screen and (max-width: 768px) {
-        font-weight: 510;
-        font-size: 1rem;
-       
-      }
-`;
-
-const Tp = styled.p`
-    color: grey;
-    font-weight: normal;
-    font-size: 1.2rem;
-    margin: 1rem 0 -0.5rem 2rem; 
-    text-align: right;
- 
-    @media only screen and (max-width: 768px) {
-        font-weight: 510;
-        font-size: 1rem;
-       
-      }
-`;
 
 const Flex = styled.div`
         width: 100%;
@@ -224,15 +188,6 @@ const ApprovalPanel = ({ onConfirm, isLoading,onNext ,isDeployed}) => {
 
 
 const FundraiserPreview = ({fundraiser,isLoading,onConfirm,onNext,isDeployed}) => {
-  
-
-   
-
-
-  
-  
-
-
   
     return (
         <Sec id="">

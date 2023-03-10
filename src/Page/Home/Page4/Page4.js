@@ -226,8 +226,8 @@ const Page4 = (props) => {
   }) : fundraisersData;
 
   return (
-    <Element id='allfundraiser' name='allfundraiser'>
-    <Sec id="allfundraiserCategory">
+    // <Element id='allfundraiserCategory' name='allfundraiserCategory'>
+    <Sec id='allfundraiserCategory'>
       <Width>
         <Heading>
           You can search by category or donate directly to a fundraiser of your option
@@ -296,7 +296,7 @@ const Page4 = (props) => {
       </Background>
 
     </Sec>
-    </Element>
+    //</Element>
   )
 }
 

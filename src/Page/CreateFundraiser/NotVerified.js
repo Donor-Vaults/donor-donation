@@ -188,8 +188,8 @@ const NotVerified = ({ onNext, hide,isEmail, onBack }) => {
         <Details>
           <div style={{ margin: "3rem 0 0 0" }}>
             <T style={{ margin: "0 0 0.5rem 0", fontSize: "1.6rem" }}>
-              Your account is Pending for {isEmail?"Email ":"Identity "}verification. <br/>
-              {isEmail?"Please Check your inbox to verify the email":"Please wait, while we are verfiying your account "}
+              Your account is pending for {isEmail?"email ":"identity "}verification. <br/><br/>
+              {isEmail?"Please check your inbox to verify the email.":"Please wait, while we are verfiying your account "}
             </T>
       
           </div>
@@ -204,10 +204,10 @@ const NotVerified = ({ onNext, hide,isEmail, onBack }) => {
                 fontSize: "2rem",
               }}
               onClick={() => {
-                window.location.href= "/allfundraiser"
+                window.location.href= "/"
               }}
             >
-              Explore
+              Go To Home
             </Button>
           </div>
         </Details>

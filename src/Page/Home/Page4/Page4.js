@@ -229,7 +229,9 @@ const Page4 = (props) => {
     // <Element id='allfundraiserCategory' name='allfundraiserCategory'>
     <Sec id='allfundraiserCategory'>
       <Width>
-        <Heading>
+        <Heading style={{
+          marginTop: 30
+        }}>
           You can search by category or donate directly to a fundraiser of your option
         </Heading>
 

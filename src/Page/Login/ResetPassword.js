@@ -266,7 +266,7 @@ const ResetPassword = () => {
         console.log(data); // data
 
         toast.success("Password Successfully Reset")
-        window.location.href="/"
+        window.location.href="/profile"
       } catch (error) {
         console.log("error", error)
         if (error && error.message) {
@@ -287,7 +287,7 @@ const ResetPassword = () => {
             justifyContent: "space-evenly"
           }}>
             <div>
-              <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0", width: "100%" }}>Enter New Password</p>
+              <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0", width: "100%",color:"#03a95d" }}>Enter New Password</p>
               <input
                 type="password"
                 onChange={(e) => {
@@ -299,7 +299,7 @@ const ResetPassword = () => {
               />
             </div>
             <div>
-              <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0", width: "100%" }}>Enter New Password</p>
+              <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0", width: "100%" ,color:"#03a95d"}}>Confirm Password</p>
               <input
                 type="password"
                 onChange={(e) => {
@@ -321,35 +321,10 @@ const ResetPassword = () => {
               handleResetPassword();
             }}
           >
-            {isLoading ? "Logging in ..." : "Reset Password"}
+            {isLoading ? "Resetting" : "Reset Password"}
           </Button>
         </Container>
-        <StyledLink
-          initial={{ x: 0, y: 0 }}
-          animate={{ x: 9, y: 0 }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <Link fontSize={"25px"} href="/register" style={{
-            margin: '2rem 0 0 0',
-            textDecoration: 'none', color: '#FFF', fontWeight: 'bold',
-            backgroundColor: 'rgba(0,0,0,0.25)', padding: '1.25rem', borderRadius: "0.5rem"
-          }}>
-            Create Account
-          </Link>
-
-          <Link fontSize={"25px"} href="/login" style={{
-            margin: '2rem 0 0 0',
-            textDecoration: 'none', color: '#FFF', fontWeight: 'bold',
-            marginLeft: 5,
-            backgroundColor: 'rgba(0,0,0,0.25)', padding: '1.25rem', borderRadius: "0.5rem"
-          }}>
-            Login
-          </Link>
-        </StyledLink>
+    
       </Width>
     </ParentContainer>
 

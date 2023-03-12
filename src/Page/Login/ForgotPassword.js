@@ -215,7 +215,7 @@ const ForgotPassword = () => {
         <div style={{ display: "flex", }}>
           <Line />
           <div>
-            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" ,width:"100%"}}>Enter Email to Receive Password Reset Link</p>
+            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" ,width:"100%",color:"#03a95d"}}>Enter Email to Receive Password Reset Link</p>
             <input
               type="email"
               onChange={(e) => {
@@ -236,7 +236,7 @@ const ForgotPassword = () => {
             handleResetPassword();
           }}
         >
-          {isLoading ? "Logging in ..." : "Send Reset Link"}
+          {isLoading ? "Processing" : "Send Reset Link"}
         </Button>
       </Container>
       <StyledLink
@@ -248,7 +248,7 @@ const ForgotPassword = () => {
           repeatType: "reverse",
         }}
       >
-        <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
+        {/* <Link fontSize={"25px"} href="/register" style={{margin:'2rem 0 0 0',
           textDecoration:'none',color: '#FFF',fontWeight:'bold',
           backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
         }}>
@@ -261,7 +261,7 @@ const ForgotPassword = () => {
           backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem"
         }}>
        Login
-        </Link>
+        </Link> */}
       </StyledLink>
     </Width>
     </ParentContainer>

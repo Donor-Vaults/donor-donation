@@ -237,7 +237,7 @@ const UpdateTab = ({fundraiser}) => {
         lineHeight: "1.4",
       }}
     >
-      {fundraiser.fundraiserDescription}
+      {/* {fundraiser.fundraiserDescription} */}
     </T>
   </Lower>
 }

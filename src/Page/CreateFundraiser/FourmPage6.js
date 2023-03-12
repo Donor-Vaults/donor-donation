@@ -145,6 +145,8 @@ const FundPreview = ({ data,onNext, hide, onBack }) => {
     if (isValid) {
       onNext({ contract_address: contractAddress });
     }
+    console.log("onNext",contractAddress)
+
   };
 
   const loadContract = () => {

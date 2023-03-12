@@ -196,7 +196,7 @@ const Home = () => {
     return    <Button
       type="button"
       onClick={() => {
-        window.location.href="/allfundraiser"
+        window.location.href="/allfundraiser#allfundraiserCategory"
       }}
     style={{ padding: "0 1rem",  }}
   

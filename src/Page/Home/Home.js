@@ -34,15 +34,15 @@ const HomeDefault = () => {
     );
   }
 
-  if(window.location.pathname === "/allfundraiser"){
+  // if(window.location.pathname === "/allfundraiser"){
    
-    scrollToWithContainer();
+  //   scrollToWithContainer();
    
-  }
+  // }
 
-  useEffect( () =>{
-    scrollToWithContainer()
-  },[window.location.pathname] )
+  // useEffect( () =>{
+  //   scrollToWithContainer()
+  // },[window.location.pathname] )
 
   return (
     <>

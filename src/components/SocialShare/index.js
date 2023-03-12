@@ -66,16 +66,22 @@ export const SocialShare = ({link}) => {
           >
             Share Now
         </Typography> */}
-        <Button
-          //disabled={fundraiser.fundraisers_status !== "APPROVED"}
-          style={{ width: "12rem", background: "#FFF", color: "#2D7B43" }}
-        >
-          Share Now
-        </Button>
+       
         
-         <div className="Demo__container" 
-          style={{width:'100%',display:'flex',justifyContent:'space-evenly',
-            margin:'1rem 0 0 0'
+       
+      <p
+          //disabled={fundraiser.fundraisers_status !== "APPROVED"}
+          style={{  color: "#fff",textAlign:"center" }}
+        >
+          Share Now 
+        </p>
+      
+        <div className="Demo__container" 
+          style={{width:'100%',display:'flex',justifyContent:'space-between',
+            margin: '1rem 0 0 0',
+            // background: "red",
+            // paddingLeft: 10,
+            // paddingRight:10
         }}
          >
     <div className="Demo__some-network" >
@@ -167,7 +173,6 @@ export const SocialShare = ({link}) => {
    
 
   
-        </div>
-      
+      </div>
     </Box>
 }

@@ -160,7 +160,9 @@ const FourmPage7 = ({ onNext, hide, onBack }) => {
                                 <Button style={{borderRadius:'2rem',width:'12rem',margin:'0 0 2rem 0',border:'2px solid #FFFFFF',fontSize:'2rem'}}
                                     
                                 >
-                                   <Link to='/profile' style={{textDecoration:'none',color:'#fff'}}>Continue</Link> 
+                                <Link onClick={() => {
+                                    window.location.href="/profile"
+                                   }} style={{textDecoration:'none',color:'#fff'}}>Continue</Link> 
                                 </Button>
                             </div>
                         </Details>

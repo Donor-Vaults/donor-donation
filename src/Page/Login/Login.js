@@ -166,10 +166,12 @@ const Login = () => {
         }
 
 
-        window.location.reload()
+        // window.location.reload()
+        window.location.href="/profile"
+
         console.log({ data });
       } catch (err) {
-        console.log("11weeeeee",error);
+        console.log("11weeeeee", error);
         if (error && error.message) {
           toast.error(error.message);
 
@@ -181,11 +183,19 @@ const Login = () => {
 
   return (
     <Width>
+      <p style={{
+        fontSize: "1.2rem", margin: "0 0 0.5rem 0", color: "#fff",
+        marginLeft: 25,
+        textDecoration: "none",
+      }}>
+        Don't have an account? <a href="/register" style={{         color:"blue"
+,textDecoration: "none" }}>Create.</a>
+      </p>
       <Container>
-        
-          <Margin style={{margin:'0 0 0 2rem'}}>
+
+        <Margin style={{ margin: '0 0 0 2rem' }}>
           <div>
-            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>Email</p>
+            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0",color:"#03a95d" }}>Email</p>
             <InputEmail
               type="email"
               onChange={(e) => {
@@ -195,13 +205,13 @@ const Login = () => {
               className="input"
             />
           </div>
-          </Margin>
-        
+        </Margin>
+
 
         <Margin style={{ display: "flex", alignItems: "flex-end" }}>
           <Line />
           <div>
-            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>
+            <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0",color:"#03a95d" }}>
               Password
             </p>
             <div
@@ -212,7 +222,7 @@ const Login = () => {
                 padding: "0 0 0 -2rem",
               }}
             >
-              
+
               <InputPass
                 type="password"
                 onChange={(e) => {
@@ -240,6 +250,24 @@ const Login = () => {
           {isLoading ? "Logging in ..." : "LOGIN"}
         </Button>
       </Container>
+
+      <p style={{
+        fontSize: "1.2rem", margin: "0 0 0.5rem 0", color: "#fff",
+        marginRight: 25,
+        marginTop: 15,
+        
+          textAlign: "right",
+
+        textDecoration: "none"
+      }}>
+        <a href="/forgotPassword" style={{
+          textDecoration: "none",
+          textAlign: "right",
+          width: "100%",
+          color:"blue"
+
+        }}>Forgot Password?</a>
+      </p>
       <StyledLink
         initial={{ x: 0, y: 0 }}
         animate={{ x: 9, y: 0 }}
@@ -249,22 +277,24 @@ const Login = () => {
           repeatType: "reverse",
         }}
       >
-        <Link fontSize={"25px"} href="/register" style={{
+
+
+        {/* <Link fontSize={"25px"} href="/register" style={{
           textDecoration:'none',color: '#FFF',fontWeight:'bold',
           backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem",
           margin:'0 0.5rem 0 0'
         }}>
            Create Account
-        </Link>
+        </Link> */}
 
-        <Link fontSize={"25px"} href="/forgotPassword" style={{
+        {/* <Link fontSize={"25px"} href="/forgotPassword" style={{
           textDecoration: 'none', color: '#FFF', fontWeight: 'bold',
           marginLeft:5,
           backgroundColor:'rgba(0,0,0,0.25)',padding:'1.25rem',borderRadius:"0.5rem",
           margin:'0 0 0 0.5rem'
         }}>
         Forgot Password?
-        </Link>
+        </Link> */}
       </StyledLink>
     </Width>
   );

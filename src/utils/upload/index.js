@@ -33,33 +33,34 @@ export const uploadFile = async (file) => {
     //     secretAccessKey:process.env.REACT_APP_S3_SECRET_KEY,
     //     region: 'us-east-1',
     //     s3Url:`http://${process.env.REACT_APP_BUCKET_NAME}.s3-website-us-east-1.amazonaws.com`
-     
-    // }
-    
-    // console.log("11dd[a[a[apapa1111111",config)
-    
 
-    
- 
+    // }
+
+    // console.log("11dd[a[a[apapa1111111",config)
+
+
+
+
     // const fileName = `${generateGuid()}.${extention}`
     // const renamedFile = renameFile(file,fileName)
     // const res = await S3FileUpload.uploadFile(renamedFile, config);
     // console.log(res.location)
 
+    
     var formdata = new FormData();
-formdata.append("file", file,file.name);
+    formdata.append("file", file, file.name);
 
-var requestOptions = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
+    var requestOptions = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow'
+    };
 
-const resp = await fetch(`${config.UPLOAD_URL}/documents/upload`, requestOptions)
- 
+    const resp = await fetch(`${config.UPLOAD_URL}/documents/upload`, requestOptions)
+
     const response = await resp.json()
-    console.log({response})
+    console.log({ response })
 
     return response.url
-    
+
 }

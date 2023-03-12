@@ -25,7 +25,7 @@ const CreateCampaign = () => {
   }, [user]);
 
   const handleSubmitForm = async (payload) => {
-    console.log({ payload });
+    console.log("handleSubmitForm",{ payload });
     setLoading(true);
     try {
       const featuredImage = await uploadFile(payload.featuredImage);

@@ -203,9 +203,9 @@ const FourmPage3 = () => {
                         <Margin>
                             {/* <T>3 of 4</T> */}
                             <H style={{color:'#000'}}>
-                            Add a photo/video
+                            Add a photo
                             </H>
-                            <T style={{color:'#000'}}> Please ensure the photo/video is clear and bright so that people will look at your fundraiser</T>
+                            <T style={{color:'#000'}}> Please ensure the photo is clear and bright so that people will look at your fundraiser</T>
                         </Margin>
                     </Left>
                     
@@ -225,7 +225,7 @@ const FourmPage3 = () => {
                             
                             <InputContainer>
                                 <Input type="image" src={I} alt="" className="input1" style={{height:'3rem',width:'3.5rem'}} />
-                                <div style={{margin:'1.5rem 0 0 0'}}>Drag or Upload the photo/video here</div>
+                                <div style={{margin:'1.5rem 0 0 0'}}>Drag or Upload the photo here</div>
                             </InputContainer>
                                
 

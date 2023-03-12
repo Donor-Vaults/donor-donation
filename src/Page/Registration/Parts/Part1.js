@@ -722,8 +722,19 @@ const Part1 = ({ hide, value, onNext, onInfoChanged }) => {
                 Next
               </Button>
             </div>
-          </Details>
-        </Right>
+        </Details>
+        <p fontSize={"20px"} href="/login" style={{
+          textAlign: "center",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+          // background: "red",
+          // width:"50%",
+        textDecoration:'none',color: '#1B1212',fontWeight:'bold'}}>
+          Already have an account? <a href="/login" style={{color:"blue",textDecoration:"none"}}> Login.</a>
+        </p>
+      </Right>
+      
       </Box>
   );
 };

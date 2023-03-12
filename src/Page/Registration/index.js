@@ -176,10 +176,7 @@ const Registration = () => {
     <Sec id="">
       <Width>
         {getFragment()}
-        <Link fontSize={"20px"} href="/login" style={{margin:'2rem 0 0 0',
-        textDecoration:'none',color: '#1B1212',fontWeight:'bold'}}>
-          Already have an account? Login
-        </Link>
+       
       </Width>
     </Sec>
   );

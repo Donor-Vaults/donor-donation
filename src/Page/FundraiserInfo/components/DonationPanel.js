@@ -353,9 +353,13 @@ const DonationPanel = ({ fundraiser }) => {
          </div> 
         : null}
 
-          <a target="_blank" href="www.google.com">
-            You know this fundraiser is a fraud? Report.
-          </a>
+      <p target="_blank" href="www.google.com">
+        Do you think this fundraiser is a fraud/scam? <a
+          href="https://google.com"
+          target="_blank" >
+        Report.
+        </a>
+          </p>
 
       </Box1>
 

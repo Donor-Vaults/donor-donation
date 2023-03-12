@@ -217,10 +217,10 @@ const FourmPage3 = ({ onNext, hide, onBack }) => {
 
           <Margin>
             {/* <T>3 of 4</T> */}
-            <H style={{ color: "#000" }}>Add a photo/video</H>
+            <H style={{ color: "#000" }}>Add a photo</H>
             <T style={{ color: "#000" }}>
               {" "}
-              Please ensure the photo/video is clear and bright so that people
+              Please ensure the photo is clear and bright so that people
               will look at your fundraiser
             </T>
           </Margin>
@@ -307,7 +307,7 @@ const FourmPage3 = ({ onNext, hide, onBack }) => {
                     style={{ height: "3rem", width: "3.5rem" }}
                   />
                   <div style={{ margin: "1.5rem 0 0 0" }}>
-                    Upload the photo/video here
+                    Upload the photo here
                   </div>
                 </>
               )}

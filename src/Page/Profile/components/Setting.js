@@ -69,7 +69,7 @@ const Setting = () => {
           onChange={(e) => {
             setData({ ...data, password: e.target.value });
           }}
-          placeholder="Password"
+          placeholder="Enter new password"
           className="input1"
           style={{
             height: "4rem",
